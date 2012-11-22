@@ -1,5 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <filter>
+        <filter-name>HibernateSessionConversationTest</filter-name>
+        <filter-class>dao.servlet.HibernateSessionConversationFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>HibernateSessionRequestFilter</filter-name>
+        <filter-class>dao.servlet.HibernateSessionRequestFilter</filter-class>
+    </filter>
+    
+    <filter-mapping>
+        <filter-name>HibernateSessionRequestFilter</filter-name>
+        <servlet-name>SessionRequestServlet</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>HibernateSessionConversationFilter</filter-name>
+        <servlet-name>SessionConversationServlet</servlet-name>
+    </filter-mapping>
+    
+    <servlet>
+        <servlet-name>SessionConversationServlet</servlet-name>
+        <servlet-class>dao.servlet.FilterTestServlet</servlet-class>
+        <init-param>
+            <param-name>dao-factory-class</param-name>
+            <param-value>dao.factory.hibernate.HibernateDaoFactory</param-value>
+        </init-param>
+    </servlet>
+    <servlet>
+        <servlet-name>SessionRequestServlet</servlet-name>
+        <servlet-class>dao.servlet.FilterTestServlet</servlet-class>
+        <init-param>
+            <param-name>dao-factory-class</param-name>
+            <param-value>dao.factory.hibernate.HibernateDaoFactory</param-value>
+        </init-param>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>SessionConversationServlet</servlet-name>
+        <url-pattern>/session-per-conversation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SessionRequestServlet</servlet-name>
+        <url-pattern>/session-per-request</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30

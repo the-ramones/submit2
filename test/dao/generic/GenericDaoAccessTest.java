@@ -2,7 +2,6 @@ package dao.generic;
 
 import dao.*;
 import dao.factory.DaoFactory;
-import dao.generic.impl.GenericHibernateDao;
 import dao.impl.*;
 import java.util.List;
 import lazy.domain.*;

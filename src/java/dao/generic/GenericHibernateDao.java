@@ -1,4 +1,4 @@
-package dao.generic.impl;
+package dao.generic;
 
 import dao.generic.GenericDao;
 import java.lang.reflect.ParameterizedType;

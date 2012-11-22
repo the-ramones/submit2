@@ -1,7 +1,7 @@
 package dao.impl;
 
 import dao.SupplierDao;
-import dao.generic.impl.GenericHibernateDao;
+import dao.generic.GenericHibernateDao;
 import lazy.domain.Supplier;
 
 /**

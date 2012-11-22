@@ -1,7 +1,7 @@
 package dao.impl;
 
 import dao.CompanyDao;
-import dao.generic.impl.GenericHibernateDao;
+import dao.generic.GenericHibernateDao;
 import java.util.List;
 import lazy.domain.Company;
 import lazy.domain.Customer;

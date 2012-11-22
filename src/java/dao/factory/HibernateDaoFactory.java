@@ -3,7 +3,7 @@ package dao.factory;
 import dao.CompanyDao;
 import dao.CustomerDao;
 import dao.SupplierDao;
-import dao.generic.impl.GenericHibernateDao;
+import dao.generic.GenericHibernateDao;
 import dao.impl.CompanyHibernateDao;
 import dao.impl.CustomerHibernateDao;
 import dao.impl.SupplierHibernateDao;

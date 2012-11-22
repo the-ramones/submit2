@@ -33,7 +33,12 @@
                 <ul></ul>
                 <ul></ul>
                 <ul></ul>
-            </ul>
+            </ul>        
     </li>        
+    <form method="GET" action="/filter">
+        <label>Redirect to "Servlet vs. Filter" </label>
+        <input type="button" title="Go!"/>
+    </form>
+    </form>
 </body>
 </html>
