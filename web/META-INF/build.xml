@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taskdef name="aopc" classname="org.jboss.aop.ant.AopC">
+    <classpath refid="project.libs"/>
+</taskdef>
+
+<target name="instrument.aop" depends="compile"
+        description="Run the AOP compiler to weave interception code">
+
+    <aopc classpath="${classes.dir}">
+        <compilerclasspath><path refid="project.libs"/></compilerclasspath>
+        <src path="${classes.dir}"/>
+        <include name="**/*.class"/>
+    </aopc>
+</target>
+

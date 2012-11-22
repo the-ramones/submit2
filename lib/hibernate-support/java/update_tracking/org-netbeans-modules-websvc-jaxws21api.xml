@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module codename="org.netbeans.modules.websvc.jaxws21api/1">
+    <module_version install_time="1349871184495" last="true" origin="installer" specification_version="1.19.1">
+        <file crc="1022855919" name="config/Modules/org-netbeans-modules-websvc-jaxws21api.xml"/>
+        <file crc="843448156" name="modules/ext/jaxws22/api/javax.annotation.jar"/>
+        <file crc="2074133285" name="modules/ext/jaxws22/api/jaxws-api.jar"/>
+        <file crc="1787907753" name="modules/ext/jaxws22/api/jsr181-api.jar"/>
+        <file crc="2588230027" name="modules/ext/jaxws22/api/saaj-api.jar"/>
+        <file crc="263480708" name="modules/locale/org-netbeans-modules-websvc-jaxws21api_ja.jar"/>
+        <file crc="3152530216" name="modules/locale/org-netbeans-modules-websvc-jaxws21api_pt_BR.jar"/>
+        <file crc="2511752202" name="modules/locale/org-netbeans-modules-websvc-jaxws21api_ru.jar"/>
+        <file crc="1491089349" name="modules/locale/org-netbeans-modules-websvc-jaxws21api_zh_CN.jar"/>
+        <file crc="2036112882" name="modules/org-netbeans-modules-websvc-jaxws21api.jar"/>
+    </module_version>
+</module>

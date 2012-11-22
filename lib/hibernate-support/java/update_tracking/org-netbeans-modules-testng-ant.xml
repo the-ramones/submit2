@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module codename="org.netbeans.modules.testng.ant">
+    <module_version install_time="1349871288738" last="true" origin="installer" specification_version="2.1.1">
+        <file crc="3898495624" name="config/Modules/org-netbeans-modules-testng-ant.xml"/>
+        <file crc="4183767525" name="modules/locale/org-netbeans-modules-testng-ant_ja.jar"/>
+        <file crc="517541710" name="modules/locale/org-netbeans-modules-testng-ant_pt_BR.jar"/>
+        <file crc="3471817301" name="modules/locale/org-netbeans-modules-testng-ant_ru.jar"/>
+        <file crc="3655563843" name="modules/locale/org-netbeans-modules-testng-ant_zh_CN.jar"/>
+        <file crc="3839484557" name="modules/org-netbeans-modules-testng-ant.jar"/>
+    </module_version>
+</module>

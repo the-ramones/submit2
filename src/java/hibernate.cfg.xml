@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- database connection -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/lazy</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">secret</property>
+        <!-- common options -->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.use_sql_comments">false</property>        
+        <!-- connection and sessions -->
+        <property name="hibernate.connection.pool_size">10</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+        <!-- transaction options -->
+  <!--  <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</property>
+        <property name="hibernate.transaction.manager_lookup_class">org.hibernate.transaction.TransationManagerLookupFactory</property>
+   -->
+        <!-- cache options -->
+        <!-- <property name="hibernate.cache.provider_class">net.sf.ehcache.hibernate.SingletonEhCacheRegionFactory</property> -->
+        <property name="hibernate.cache.provider_class">org.hibernate.cache.HashtableCacheProvider</property>
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <property name="hibernate.cache.use_query_cache">true</property>
+        <!-- resource mappings -->
+        <mapping class="lazy.domain.Company" />
+        <mapping class="lazy.domain.Customer" />
+        <mapping class="lazy.domain.Supplier" />
+    </session-factory>
+</hibernate-configuration>

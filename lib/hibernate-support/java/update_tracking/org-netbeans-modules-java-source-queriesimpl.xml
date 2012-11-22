@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module codename="org.netbeans.modules.java.source.queriesimpl">
+    <module_version install_time="1349871265483" last="true" origin="installer" specification_version="1.4.1">
+        <file crc="4262557433" name="config/Modules/org-netbeans-modules-java-source-queriesimpl.xml"/>
+        <file crc="2717751233" name="modules/locale/org-netbeans-modules-java-source-queriesimpl_ja.jar"/>
+        <file crc="4211324173" name="modules/locale/org-netbeans-modules-java-source-queriesimpl_pt_BR.jar"/>
+        <file crc="2295951334" name="modules/locale/org-netbeans-modules-java-source-queriesimpl_ru.jar"/>
+        <file crc="228217479" name="modules/locale/org-netbeans-modules-java-source-queriesimpl_zh_CN.jar"/>
+        <file crc="2181105488" name="modules/org-netbeans-modules-java-source-queriesimpl.jar"/>
+    </module_version>
+</module>

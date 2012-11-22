@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<target name="classloaderaop.run" depends="compile"
+    description="Run with load-time AOP instrumentation">
+    <echo>To run on JDK 1.4 download JBoss AOP and don't use lib/api/jboss-aop-jdk5.jar!</echo>
+
+    <!-- Compile a custom classloader first, for JDK 5.0 (see note above) -->
+    <java
+        classname="org.jboss.aop.hook.GenerateInstrumentedClassLoader"
+        fork="yes"
+        failonerror="true">
+        <arg value="${build.dir}/custom_aop_loader"/>
+        <classpath refid="project.libs"/>
+    </java>
+
+    <!-- Need custom bootclasspath... -->
+    <path id="custom.bootclasspath">
+        <fileset dir="${lib.dir}">
+            <include name="**/jboss-ejb3-all*.jar"/>
+            <include name="**/thirdparty-all*.jar"/>
+        </fileset>
+        <pathelement path="${build.dir}/custom_aop_loader"/>
+    </path>
+    <property name="bootclasspath" refid="custom.bootclasspath"/>
+
+    <!-- Run TestNG tests with custom classloader in boot classpath, prepended -->
+    <mkdir dir="${testng.out.dir}"/>
+    <testng outputDir="${testng.out.dir}">
+        <jvmarg value="-Xbootclasspath/p:${bootclasspath}"/>
+        <jvmarg value="-Djboss.aop.exclude=org.hibernate.impl"/>
+        <!-- Ignoring these prevents warnings -->
+        <jvmarg value="-Djboss.aop.ignore=*ByCGLIB$$*,*dom4j*,*oracle*,*objectweb*"/>
+        <classpath>
+            <path refid="project.libs"/>
+            <pathelement path="${classes.dir}"/>
+        </classpath>
+        <xmlfileset dir="${etc.dir}">
+            <include name="testsuite-aop.xml"/>
+        </xmlfileset>
+    </testng>
+</target>

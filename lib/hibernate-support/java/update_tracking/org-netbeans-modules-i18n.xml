@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module codename="org.netbeans.modules.i18n/1">
+    <module_version install_time="1349871246388" last="true" origin="installer" specification_version="1.39.1">
+        <file crc="2108769092" name="config/Modules/org-netbeans-modules-i18n.xml"/>
+        <file crc="1988521758" name="modules/locale/org-netbeans-modules-i18n_ja.jar"/>
+        <file crc="4236548324" name="modules/locale/org-netbeans-modules-i18n_pt_BR.jar"/>
+        <file crc="2385550243" name="modules/locale/org-netbeans-modules-i18n_ru.jar"/>
+        <file crc="3156670262" name="modules/locale/org-netbeans-modules-i18n_zh_CN.jar"/>
+        <file crc="2603962264" name="modules/org-netbeans-modules-i18n.jar"/>
+    </module_version>
+</module>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module codename="org.netbeans.modules.maven.coverage">
+    <module_version install_time="1349871272855" last="true" origin="installer" specification_version="1.7.1">
+        <file crc="460792768" name="config/Modules/org-netbeans-modules-maven-coverage.xml"/>
+        <file crc="2661562583" name="modules/locale/org-netbeans-modules-maven-coverage_ja.jar"/>
+        <file crc="3338208015" name="modules/locale/org-netbeans-modules-maven-coverage_pt_BR.jar"/>
+        <file crc="4285433187" name="modules/locale/org-netbeans-modules-maven-coverage_ru.jar"/>
+        <file crc="3791226016" name="modules/locale/org-netbeans-modules-maven-coverage_zh_CN.jar"/>
+        <file crc="4290485409" name="modules/org-netbeans-modules-maven-coverage.jar"/>
+    </module_version>
+</module>
