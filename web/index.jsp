@@ -26,14 +26,14 @@
             <ul>dao.impl.* classes: implementation under different data sources, currently only Hibernate ORM platform</ul>            
             <ul>dao.factory.* classes: abstract factory J2EE pattern; DaoFactory.class - abstract factory, HibernateDaoFactory - one implementation under Hibernate ORM</ul>
             <ul>lazy.db SQL-files: SQL scripts for database creation, replacement and data insertion
-            <ul>last lazy.* packages: duplicated functionality for HibernateLazyInitializationException project</ul>
-            <ul>lazy.* contains @FetchProfile functionality, package-info.java classes, 2-layer support: Hibernate, plain XML</ul>    
-        </ul>
-        <ul>RESTful web-services configuration:
-            <ul></ul>
-            <ul></ul>
-            <ul></ul>
-        </ul>
+                <ul>last lazy.* packages: duplicated functionality for HibernateLazyInitializationException project</ul>
+                <ul>lazy.* contains @FetchProfile functionality, package-info.java classes, 2-layer support: Hibernate, plain XML</ul>    
+            </ul>
+            <ul>RESTful web-services configuration:
+                <ul></ul>
+                <ul></ul>
+                <ul></ul>
+            </ul>
     </li>        
 </body>
 </html>

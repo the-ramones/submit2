@@ -9,6 +9,7 @@ import lazy.dao.impl.SupplierDaoHibernate;
 
 /**
  * Hibernate Data Access provider
+ *
  * @author the-ramones
  */
 public class HibernateDaoFactory extends DaoFactory {
@@ -16,7 +17,7 @@ public class HibernateDaoFactory extends DaoFactory {
     private CompanyDaoHibernate companyDao;
     private CustomerDaoHibernate customerDao;
     private SupplierDaoHibernate supplierDao;
-    
+
     protected HibernateDaoFactory() {
         this.companyDao = new CompanyDaoHibernate();
         this.customerDao = new CustomerDaoHibernate();

@@ -13,14 +13,15 @@ import org.hibernate.SessionFactory;
 
 /**
  * RDBMS MySQL + Hibernate framework CompanyDao implementation
+ *
  * @see lazy.dao.CompanyDao
  * @author the-ramones
  */
 public class CompanyDaoHibernate implements CompanyDao {
-    
+
     SessionFactory sf = HibernateUtil.getSessionFactory();
     final Class<Company> aClass = Company.class;
-        
+
     public CompanyDaoHibernate() {
     }
 
@@ -28,9 +29,9 @@ public class CompanyDaoHibernate implements CompanyDao {
     public Company find(Integer id) {
         Company company = null;
         Session session = sf.openSession();
-        try { 
+        try {
             company = (Company) session.load(aClass, id);
-        } catch(HibernateException e) {            
+        } catch (HibernateException e) {
         }
         return company;
     }
@@ -39,28 +40,28 @@ public class CompanyDaoHibernate implements CompanyDao {
     public Set<Company> find() {
         List<Company> companies = null;
         Session session = sf.openSession();
-        try { 
+        try {
             session.beginTransaction();
             Query query = session.createQuery("select c from Company c");
             companies = (List<Company>) query.list();
             session.getTransaction().commit();
-        } catch(HibernateException e) { 
+        } catch (HibernateException e) {
             session.getTransaction().rollback();
         }
         return new HashSet<Company>(companies);
     }
-    
+
     public Set<Company> findEagerly(String fetchProfile) {
         List<Company> companies = null;
         Session session = sf.openSession();
-        try { 
+        try {
             //session.enableFetchProfile(fetchProfile);
             session.beginTransaction();
             Query query = session.createQuery("select c from Company c");
             companies = (List<Company>) query.list();
             session.getTransaction().commit();
             //session.disableFetchProfile(fetchProfile);
-        } catch(HibernateException e) { 
+        } catch (HibernateException e) {
             session.getTransaction().rollback();
         }
         return new HashSet<Company>(companies);
@@ -74,7 +75,7 @@ public class CompanyDaoHibernate implements CompanyDao {
             session.beginTransaction();
             id = (Integer) session.save(value);
             session.getTransaction().commit();
-        } catch(HibernateException e) {  
+        } catch (HibernateException e) {
             session.getTransaction().rollback();
         }
         return id;
@@ -87,7 +88,7 @@ public class CompanyDaoHibernate implements CompanyDao {
             session.beginTransaction();
             session.delete(value);
             session.getTransaction().commit();
-        } catch(HibernateException e) {            
+        } catch (HibernateException e) {
             session.getTransaction().rollback();
         }
     }
@@ -99,7 +100,7 @@ public class CompanyDaoHibernate implements CompanyDao {
             session.beginTransaction();
             session.merge(value);
             session.getTransaction().commit();
-        } catch(HibernateException e) {  
+        } catch (HibernateException e) {
             session.getTransaction().rollback();
         }
     }

@@ -13,10 +13,9 @@ import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Example;
 
 /**
- * Generic Dao under Hibernate ORM.
- * You can create a better typed GenericDao 
- * as <MODEL extends IModel<ID>, ID extends Serializable>. 
- * This is your choice
+ * Generic Dao under Hibernate ORM. You can create a better typed GenericDao as
+ * <MODEL extends IModel<ID>, ID extends Serializable>. This is your choice
+ *
  * @author the-ramones
  */
 // Op.2: Change plain class to EJB3 @Stateless jave bean
@@ -30,10 +29,9 @@ public abstract class GenericHibernateDao<T, ID extends java.io.Serializable> im
     // Op.2: Dependency injection feature @PersistenceContex
     //@PersistenceContext
     //private EntityManager em;
-    
+
     public GenericHibernateDao() {
-        this.persistentClass = (Class<T>) (((ParameterizedType) 
-                getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
+        this.persistentClass = (Class<T>) (((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
         // setSession((Session) em.getDelegate());
     }
     /*
@@ -48,21 +46,21 @@ public abstract class GenericHibernateDao<T, ID extends java.io.Serializable> im
     protected Session getSession() {
         if (session == null) {
             /* Approach #1. Manual set up session object. Used in sinple project 
-               and integration tests.
+             and integration tests.
              */
             /*
-              throw new IllegalStateException("Session has not been set on DAO before usage");
+             throw new IllegalStateException("Session has not been set on DAO before usage");
              */
             /*
-            * Approach #2. Standart HibernateUtil lookup
-            */
+             * Approach #2. Standart HibernateUtil lookup
+             */
             session = HibernateUtil.getSessionFactory().getCurrentSession();
             /*
              * Approach #3. Managed EJB 3.0 component resolve
              */
-           /* 
-            * setSession((Session) em.getDelegate());
-            */
+            /* 
+             * setSession((Session) em.getDelegate());
+             */
         }
         return session;
     }
@@ -76,7 +74,7 @@ public abstract class GenericHibernateDao<T, ID extends java.io.Serializable> im
     public T findById(ID id, boolean lock) {
         T entity;
         //if (lock) {
-            entity = (T) getSession().load(persistentClass, id /*, LockOptions.UPGRADE */);
+        entity = (T) getSession().load(persistentClass, id /*, LockOptions.UPGRADE */);
         //} else {
         //    entity = (T) getSession().load(persistentClass, id, LockOptions.READ);
         //}

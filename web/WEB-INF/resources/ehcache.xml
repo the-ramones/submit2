@@ -341,118 +341,118 @@ implementation must provide a public constructor that takes a single java.util.P
  Distributed Caches connect to a Terracotta
  Server Array. They are configured with the <terracotta> sub-element. 
  
- The <terracotta> sub-element has the following attributes: * clustered=true|false
- - indicates whether this cache should be clustered (distributed) with Terracotta.
- By default, if the <terracotta> element is included, clustered=true. * 
- valueMode=serialization|identity - the default is serialization Indicates whether
- cache Elements are distributed with serialized copies or whether a single copy in 
- identity mode is distributed. The implications of Identity mode should be clearly 
- understood with reference to the Terracotta documentation before use. * 
- copyOnRead=true|false - indicates whether cache values are deserialized on every
- read or if the materialized cache value can be re-used between get() calls.
- This setting is useful if a cache is being shared by callers with
- disparate classloaders or to prevent local drift if keys/values are mutated locally 
- without being put back in the cache. The default is false. Note: This setting is
- only relevant for caches with valueMode=serialization * consistency=strong|eventual - 
- Indicates whether this cache should have strong consistency or eventual consistency. 
- The default is eventual. See the documentation for the meaning of these terms. *
- synchronousWrites=true|false Synchronous writes (synchronousWrites="true") maximize
- data safety by blocking the client thread until the write has been written to the 
- Terracotta Server Array. This option is only available with consistency=strong.
- The default is false. * concurrency - the number of segments that will be used
- by the map underneath the Terracotta Store. Its optional and has default value 
- of 0, which means will use default values based on the internal Map being used 
- underneath the store. This value cannot be changed programmatically once a cache 
- is initialized. The <terracotta> sub-element also has a <nonstop> sub-element to
- allow configuration of cache behaviour if a distributed cache operation cannot be 
- completed within a set time or in the event
- of a clusterOffline message. If this element does not appear, nonstop behavior 
- is off. <nonstop> has the following attributes: * enabled="true" - defaults to true. 
- * timeoutMillis - An SLA setting, so that if a cache operation takes longer than the 
- allowed ms, it will timeout. * immediateTimeout="true|false" - What to do on receipt
- of a ClusterOffline event indicating that communications with the Terracotta Server
- Array were interrupted. <nonstop> has one sub-element, <timeoutBehavior> which has 
- the following attribute: * type="noop|exception|localReads" - What to do when a 
- timeout has occurred. Exception is the default. Simplest example to indicate 
- clustering: <terracotta/> To indicate the cache should not be clustered 
- (or remove the <terracotta> element altogether): <terracotta clustered="false"/>
- To indicate the cache should be clustered using identity mode: 
- <terracotta clustered="true" valueMode="identity"/> To indicate the cache
- should be clustered using "eventual" consistency mode for better performance 
- : <terracotta clustered="true" consistency="eventual"/> To indicate the cache
- should be clustered using synchronous-write locking level: 
- <terracotta clustered="true" synchronousWrites="true"/>
--->
-<!--
-Default Cache configuration. 
-These settings will be applied to caches created programmatically using 
-CacheManager.add(String cacheName). This element is optional, and using
-CacheManager.add(String cacheName) when its not present will throw CacheException
-The defaultCache has an implicit name "default" which is a reserved cache name.
--->
-<defaultCache maxEntriesLocalHeap="0" eternal="false" timeToIdleSeconds="1200" timeToLiveSeconds="1200">
-<terracotta/>
-</defaultCache>
-<!--
-Sample caches. Following are some example caches. Remove these before use.
--->
-<!--
-Sample cache named sampleCache1 This cache contains a maximum in memory of 10000 
-elements, and will expire an element if it is idle for more than 5 minutes and 
-lives for more than 10 minutes. If there are more than 10000 elements it will 
-overflow to the disk cache, which in this configuration will go to wherever
-java.io.tmp is defined on your system. On a standard Linux system this will be /tmp"
--->
-<cache name="sampleCache1" maxEntriesLocalHeap="10000" maxEntriesLocalDisk="1000" eternal="false" diskSpoolBufferSizeMB="20" timeToIdleSeconds="300" timeToLiveSeconds="600" memoryStoreEvictionPolicy="LFU" transactionalMode="off">
-<persistence strategy="localTempSwap"/>
-</cache>
-<!--
-Sample cache named sampleCache2 This cache has a maximum of 1000 elements in memory.
-There is no overflow to disk, so 1000 is also the maximum cache size. Note that
-when a cache is eternal, timeToLive and timeToIdle are not used and do not need
-to be specified.
--->
-<cache name="sampleCache2" maxEntriesLocalHeap="1000" eternal="true" memoryStoreEvictionPolicy="FIFO"/>
-<!--
-Sample cache named sampleCache3. This cache overflows to disk. The disk store is 
-persistent between cache and VM restarts. The disk expiry thread interval is set 
-to 10 minutes, overriding the default of 2 minutes.
--->
-<cache name="sampleCache3" maxEntriesLocalHeap="500" eternal="false" overflowToDisk="true" diskPersistent="true" timeToIdleSeconds="300" timeToLiveSeconds="600" diskExpiryThreadIntervalSeconds="1" memoryStoreEvictionPolicy="LFU"></cache>
-<!--
-Sample Terracotta clustered cache named sampleTerracottaCache. This cache uses 
-Terracotta to cluster the contents of the cache.
--->
-<cache name="sampleTerracottaCache" maxBytesLocalHeap="10m" eternal="false" timeToIdleSeconds="3600" timeToLiveSeconds="1800">
-<terracotta/>
-</cache>
-<!--
-Sample xa enabled cache named xaCache 
-<cache name="xaCache" maxEntriesLocalHeap="500" eternal="false" timeToIdleSeconds="300"
-timeToLiveSeconds="600" diskExpiryThreadIntervalSeconds="1" transactionalMode="xa_strict"> </cache>
--->
-<!--
-Sample copy on both read and write cache named copyCache using the default 
-(explicitly configured here as an example) ReadWriteSerializationCopyStrategy 
-class could be any implementation of net.sf.ehcache.store.compound.CopyStrategy
-<cache name="copyCache" maxEntriesLocalHeap="500" eternal="false" timeToIdleSeconds="300"
-timeToLiveSeconds="600" diskExpiryThreadIntervalSeconds="1" copyOnRead="true" copyOnWrite="true">
-<copyStrategy class="net.sf.ehcache.store.compound.ReadWriteSerializationCopyStrategy" /> 
-</cache>
--->
-<!--
-Sample, for Enterprise Ehcache only, demonstrating a tiered cache with in-memory, 
-off-heap and disk stores. In this example the in-memory (on-heap) store is limited 
-to 10,000 items ... which for example for 1k items would use 10MB of memory, the
-off-heap store is limited to 4GB and the disk store is unlimited in size. 
-<cache name="tieredCache" maxEntriesLocalHeap="10000" eternal="false" timeToLiveSeconds="600" 
-overflowToOffHeap="true" maxBytesLocalOffHeap="4g" diskExpiryThreadIntervalSeconds="1"> 
-<persistence strategy="localTempSwap"/> </cache>
--->
-<!--
-Sample, for Enterprise Ehcache only, demonstrating a restartable cache with in-memory 
-and off-heap stores. <cache name="restartableCache" maxEntriesLocalHeap="10000"
-eternal="true" overflowToOffHeap="true" maxBytesLocalOffHeap="4g" 
-<persistence strategy="localRestartable"/> </cache>
--->
+     The <terracotta> sub-element has the following attributes: * clustered=true|false
+     - indicates whether this cache should be clustered (distributed) with Terracotta.
+     By default, if the <terracotta> element is included, clustered=true. * 
+     valueMode=serialization|identity - the default is serialization Indicates whether
+     cache Elements are distributed with serialized copies or whether a single copy in 
+     identity mode is distributed. The implications of Identity mode should be clearly 
+     understood with reference to the Terracotta documentation before use. * 
+     copyOnRead=true|false - indicates whether cache values are deserialized on every
+     read or if the materialized cache value can be re-used between get() calls.
+     This setting is useful if a cache is being shared by callers with
+     disparate classloaders or to prevent local drift if keys/values are mutated locally 
+     without being put back in the cache. The default is false. Note: This setting is
+     only relevant for caches with valueMode=serialization * consistency=strong|eventual - 
+     Indicates whether this cache should have strong consistency or eventual consistency. 
+     The default is eventual. See the documentation for the meaning of these terms. *
+     synchronousWrites=true|false Synchronous writes (synchronousWrites="true") maximize
+     data safety by blocking the client thread until the write has been written to the 
+     Terracotta Server Array. This option is only available with consistency=strong.
+     The default is false. * concurrency - the number of segments that will be used
+     by the map underneath the Terracotta Store. Its optional and has default value 
+     of 0, which means will use default values based on the internal Map being used 
+     underneath the store. This value cannot be changed programmatically once a cache 
+     is initialized. The <terracotta> sub-element also has a <nonstop> sub-element to
+     allow configuration of cache behaviour if a distributed cache operation cannot be 
+     completed within a set time or in the event
+     of a clusterOffline message. If this element does not appear, nonstop behavior 
+     is off. <nonstop> has the following attributes: * enabled="true" - defaults to true. 
+     * timeoutMillis - An SLA setting, so that if a cache operation takes longer than the 
+     allowed ms, it will timeout. * immediateTimeout="true|false" - What to do on receipt
+     of a ClusterOffline event indicating that communications with the Terracotta Server
+     Array were interrupted. <nonstop> has one sub-element, <timeoutBehavior> which has 
+     the following attribute: * type="noop|exception|localReads" - What to do when a 
+     timeout has occurred. Exception is the default. Simplest example to indicate 
+     clustering: <terracotta/> To indicate the cache should not be clustered 
+     (or remove the <terracotta> element altogether): <terracotta clustered="false"/>
+     To indicate the cache should be clustered using identity mode: 
+     <terracotta clustered="true" valueMode="identity"/> To indicate the cache
+     should be clustered using "eventual" consistency mode for better performance 
+     : <terracotta clustered="true" consistency="eventual"/> To indicate the cache
+     should be clustered using synchronous-write locking level: 
+     <terracotta clustered="true" synchronousWrites="true"/>
+    -->
+    <!--
+    Default Cache configuration. 
+    These settings will be applied to caches created programmatically using 
+    CacheManager.add(String cacheName). This element is optional, and using
+    CacheManager.add(String cacheName) when its not present will throw CacheException
+    The defaultCache has an implicit name "default" which is a reserved cache name.
+    -->
+    <defaultCache maxEntriesLocalHeap="0" eternal="false" timeToIdleSeconds="1200" timeToLiveSeconds="1200">
+        <terracotta/>
+    </defaultCache>
+    <!--
+    Sample caches. Following are some example caches. Remove these before use.
+    -->
+    <!--
+    Sample cache named sampleCache1 This cache contains a maximum in memory of 10000 
+    elements, and will expire an element if it is idle for more than 5 minutes and 
+    lives for more than 10 minutes. If there are more than 10000 elements it will 
+    overflow to the disk cache, which in this configuration will go to wherever
+    java.io.tmp is defined on your system. On a standard Linux system this will be /tmp"
+    -->
+    <cache name="sampleCache1" maxEntriesLocalHeap="10000" maxEntriesLocalDisk="1000" eternal="false" diskSpoolBufferSizeMB="20" timeToIdleSeconds="300" timeToLiveSeconds="600" memoryStoreEvictionPolicy="LFU" transactionalMode="off">
+        <persistence strategy="localTempSwap"/>
+    </cache>
+    <!--
+    Sample cache named sampleCache2 This cache has a maximum of 1000 elements in memory.
+    There is no overflow to disk, so 1000 is also the maximum cache size. Note that
+    when a cache is eternal, timeToLive and timeToIdle are not used and do not need
+    to be specified.
+    -->
+    <cache name="sampleCache2" maxEntriesLocalHeap="1000" eternal="true" memoryStoreEvictionPolicy="FIFO"/>
+    <!--
+    Sample cache named sampleCache3. This cache overflows to disk. The disk store is 
+    persistent between cache and VM restarts. The disk expiry thread interval is set 
+    to 10 minutes, overriding the default of 2 minutes.
+    -->
+    <cache name="sampleCache3" maxEntriesLocalHeap="500" eternal="false" overflowToDisk="true" diskPersistent="true" timeToIdleSeconds="300" timeToLiveSeconds="600" diskExpiryThreadIntervalSeconds="1" memoryStoreEvictionPolicy="LFU"></cache>
+    <!--
+    Sample Terracotta clustered cache named sampleTerracottaCache. This cache uses 
+    Terracotta to cluster the contents of the cache.
+    -->
+    <cache name="sampleTerracottaCache" maxBytesLocalHeap="10m" eternal="false" timeToIdleSeconds="3600" timeToLiveSeconds="1800">
+        <terracotta/>
+    </cache>
+    <!--
+    Sample xa enabled cache named xaCache 
+    <cache name="xaCache" maxEntriesLocalHeap="500" eternal="false" timeToIdleSeconds="300"
+    timeToLiveSeconds="600" diskExpiryThreadIntervalSeconds="1" transactionalMode="xa_strict"> </cache>
+    -->
+    <!--
+    Sample copy on both read and write cache named copyCache using the default 
+    (explicitly configured here as an example) ReadWriteSerializationCopyStrategy 
+    class could be any implementation of net.sf.ehcache.store.compound.CopyStrategy
+    <cache name="copyCache" maxEntriesLocalHeap="500" eternal="false" timeToIdleSeconds="300"
+    timeToLiveSeconds="600" diskExpiryThreadIntervalSeconds="1" copyOnRead="true" copyOnWrite="true">
+    <copyStrategy class="net.sf.ehcache.store.compound.ReadWriteSerializationCopyStrategy" /> 
+    </cache>
+    -->
+    <!--
+    Sample, for Enterprise Ehcache only, demonstrating a tiered cache with in-memory, 
+    off-heap and disk stores. In this example the in-memory (on-heap) store is limited 
+    to 10,000 items ... which for example for 1k items would use 10MB of memory, the
+    off-heap store is limited to 4GB and the disk store is unlimited in size. 
+    <cache name="tieredCache" maxEntriesLocalHeap="10000" eternal="false" timeToLiveSeconds="600" 
+    overflowToOffHeap="true" maxBytesLocalOffHeap="4g" diskExpiryThreadIntervalSeconds="1"> 
+    <persistence strategy="localTempSwap"/> </cache>
+    -->
+    <!--
+    Sample, for Enterprise Ehcache only, demonstrating a restartable cache with in-memory 
+    and off-heap stores. <cache name="restartableCache" maxEntriesLocalHeap="10000"
+    eternal="true" overflowToOffHeap="true" maxBytesLocalOffHeap="4g" 
+    <persistence strategy="localRestartable"/> </cache>
+    -->
 </ehcache>

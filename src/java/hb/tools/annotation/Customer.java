@@ -41,7 +41,7 @@ public class Customer implements java.io.Serializable {
         this.customerId = customerId;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity= hb.tools.annotation.Company.class)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = hb.tools.annotation.Company.class)
     @JoinColumn(name = "company_id", nullable = false)
     public Company getCompany() {
         return this.company;

@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package service;
 
 import java.util.List;
@@ -13,6 +12,7 @@ import javax.persistence.EntityManager;
  * @author the-ramones
  */
 public abstract class AbstractFacade<T> {
+
     private Class<T> entityClass;
 
     public AbstractFacade(Class<T> entityClass) {
@@ -51,5 +51,4 @@ public abstract class AbstractFacade<T> {
     public int count() {
         return ((Long) getEntityManager().createQuery("select count(o) from " + entityClass.getSimpleName() + " as o").getSingleResult()).intValue();
     }
-
 }

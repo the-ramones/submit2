@@ -12,7 +12,7 @@ public class CompanyDaoXml implements CompanyDao {
 
     public CompanyDaoXml() {
     }
-    
+
     @Override
     public Company find(Integer id) {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -37,5 +37,4 @@ public class CompanyDaoXml implements CompanyDao {
     public void update(Company value) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
 }

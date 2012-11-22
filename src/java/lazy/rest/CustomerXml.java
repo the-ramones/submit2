@@ -24,12 +24,15 @@ public class CustomerXml {
     @Context
     private UriInfo context;
 
-    /** Creates a new instance of CustomerH */
+    /**
+     * Creates a new instance of CustomerH
+     */
     public CustomerXml() {
     }
 
     /**
      * Retrieves representation of an instance of lazy.rest.CustomerH
+     *
      * @return an instance of java.lang.String
      */
     @GET
@@ -43,6 +46,7 @@ public class CustomerXml {
 
     /**
      * PUT method for updating or creating an instance of CustomerH
+     *
      * @param content representation for the resource
      * @return an HTTP response with content of the updated or created resource.
      */

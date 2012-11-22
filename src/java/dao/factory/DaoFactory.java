@@ -11,13 +11,12 @@ import dao.SupplierDao;
 public abstract class DaoFactory {
 
     /**
-     * Creates a standalone DAOFactory that returns unmanaged DAO
-     * beans for use in any environment Hibernate has been configured
-     * for. Uses HibernateUtil/SessionFactory and Hibernate context
-     * propagation (CurrentSessionContext), thread-bound or transaction-bound,
-     * and transaction scoped.
+     * Creates a standalone DAOFactory that returns unmanaged DAO beans for use
+     * in any environment Hibernate has been configured for. Uses
+     * HibernateUtil/SessionFactory and Hibernate context propagation
+     * (CurrentSessionContext), thread-bound or transaction-bound, and
+     * transaction scoped.
      */
-    
     public static final Class HIBERNATE = dao.factory.HibernateDaoFactory.class;
 
     /**

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <target name="classloaderaop.run" depends="compile"
-    description="Run with load-time AOP instrumentation">
+        description="Run with load-time AOP instrumentation">
     <echo>To run on JDK 1.4 download JBoss AOP and don't use lib/api/jboss-aop-jdk5.jar!</echo>
 
     <!-- Compile a custom classloader first, for JDK 5.0 (see note above) -->

@@ -9,7 +9,7 @@ import lazy.domain.Supplier;
 import org.hibernate.Query;
 
 /**
- * 
+ *
  * @author the-ramones
  */
 public class CompanyHibernateDao

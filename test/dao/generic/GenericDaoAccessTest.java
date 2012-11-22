@@ -77,7 +77,7 @@ public class GenericDaoAccessTest {
 
     @Test
     public void storedHibernateProcedureCompanyEntityTest() {
-        
+
         Transaction tx = null;
         try {
             // Plain JDBC transaction handling

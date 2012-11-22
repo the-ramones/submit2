@@ -24,25 +24,28 @@ public class SupplierJson {
     @Context
     private UriInfo context;
 
-    /** Creates a new instance of SupplierJson */
+    /**
+     * Creates a new instance of SupplierJson
+     */
     public SupplierJson() {
     }
 
     /**
      * Retrieves representation of an instance of laz.rest.SupplierJson
+     *
      * @return an instance of java.lang.String
      */
     @GET
     @Produces("application/json")
     public String getSuppliers() {
         DaoFactory.getDaoFactory(DaoFactoryType.HibernateDaoFactory)
-                .getCompanyDao()
-                ;//.findEagerly("companyWithSuppliers");
+                .getCompanyDao();//.findEagerly("companyWithSuppliers");
         return "";
     }
 
     /**
      * PUT method for updating or creating an instance of SupplierJson
+     *
      * @param content representation for the resource
      * @return an HTTP response with content of the updated or created resource.
      */

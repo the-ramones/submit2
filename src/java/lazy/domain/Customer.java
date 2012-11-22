@@ -29,10 +29,8 @@ public class Customer implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
     private Integer customerId;
-    
     @Column(name = "name")
     private String name;
-    
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = lazy.domain.Company.class)
     @JoinColumn(name = "company_id", nullable = false)
     private Company company;

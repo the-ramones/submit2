@@ -4,7 +4,7 @@ import java.util.Set;
 
 /**
  * Common DAO interface used JDK 5.0 generics
- * 
+ *
  * @author the-ramones
  */
 public interface GenericDao<K extends java.io.Serializable, T> {

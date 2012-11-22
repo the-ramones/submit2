@@ -42,22 +42,19 @@ public class Company implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "company_id")
     private Integer companyId;
-    
     @Column(name = "name")
     private String name;
-    
-    @OneToMany(cascade = CascadeType.ALL, 
-            fetch = FetchType.LAZY,
-            mappedBy = "company",
-            targetEntity = lazy.domain.Supplier.class)
+    @OneToMany(cascade = CascadeType.ALL,
+    fetch = FetchType.LAZY,
+    mappedBy = "company",
+    targetEntity = lazy.domain.Supplier.class)
     @XmlElementWrapper // Let's wrap collection in additional tag 
     @XmlElement(name = "supplier")
     private Set<Supplier> suppliers = new HashSet<Supplier>(0);
-    
-    @OneToMany(cascade = CascadeType.ALL, 
-            fetch = FetchType.LAZY,
-            mappedBy = "company", 
-            targetEntity = lazy.domain.Customer.class)
+    @OneToMany(cascade = CascadeType.ALL,
+    fetch = FetchType.LAZY,
+    mappedBy = "company",
+    targetEntity = lazy.domain.Customer.class)
     @XmlElementWrapper // Let's wrap collection in additional tag 
     @XmlElement(name = "customer")
     private Set<Customer> customers = new HashSet<Customer>();

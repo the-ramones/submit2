@@ -9,7 +9,7 @@ import lazy.dao.impl.SupplierDaoXml;
 
 /**
  * Xml API Data Access provider
- * 
+ *
  * @author the-ramones
  */
 public class XmlDaoFactory extends DaoFactory {

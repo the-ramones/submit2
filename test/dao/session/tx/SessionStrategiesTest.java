@@ -104,12 +104,10 @@ public class SessionStrategiesTest {
      factory.getCurrentSession().getTransaction().rollback();
      throw e; // or display error
      */
-    
     @Test
     public void test() {
-        
     }
-    
+
     public SessionStrategiesTest() {
     }
 

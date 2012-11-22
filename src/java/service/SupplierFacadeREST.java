@@ -20,6 +20,7 @@ import lazy.domain.Supplier;
 @javax.ejb.Stateless
 @Path("lazy.domain.supplier")
 public class SupplierFacadeREST extends AbstractFacade<Supplier> {
+
     @PersistenceContext(unitName = "")
     private EntityManager em;
 
@@ -79,5 +80,4 @@ public class SupplierFacadeREST extends AbstractFacade<Supplier> {
     protected EntityManager getEntityManager() {
         return em;
     }
-
 }

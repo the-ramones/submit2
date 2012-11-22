@@ -12,6 +12,7 @@ import org.hibernate.Session;
 
 /**
  * Factory pattern, non-abstract Factory pattern
+ *
  * @author the-ramones
  */
 public class HibernateDaoFactory extends DaoFactory {
@@ -51,7 +52,6 @@ public class HibernateDaoFactory extends DaoFactory {
     public SupplierDao getSupplierDao() {
         return (SupplierDao) instantiateDao(SupplierHibernateDao.class);
     }
-    
     Comparable c = null;
     /*
      * Inline concrete DAO implementations with no business-related data access methods.

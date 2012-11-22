@@ -13,6 +13,7 @@ import org.hibernate.SessionFactory;
 
 /**
  * RDBMS MySQL + Hibernate framework CompanyDao implementation
+ *
  * @see lazy.dao.CustomerDao
  * @author the-ramones
  */

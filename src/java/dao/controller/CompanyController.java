@@ -47,17 +47,17 @@ public class CompanyController {
      * Or in ejb-jar.xml something like this (vs Annotations)
      * 
      <enterprise-beans>
-        <session>
-            <display-name>A Credit-Service Bean</display-name>
-            <ejb-name>CreditService</ejb-name>
-            <home>creditService.ejb.CreditServiceHome</home>
-            <remote>creditService.ejb.CreditServiceRemote</remote>
-            <ejb-class>creditService.ejb.CreditServiceBean</ejb-class>
-            <session-type>Stateless</session-type>
-            <transaction-type>Container</transaction-type>
-            ...
-        </session>
-        ...
+     <session>
+     <display-name>A Credit-Service Bean</display-name>
+     <ejb-name>CreditService</ejb-name>
+     <home>creditService.ejb.CreditServiceHome</home>
+     <remote>creditService.ejb.CreditServiceRemote</remote>
+     <ejb-class>creditService.ejb.CreditServiceBean</ejb-class>
+     <session-type>Stateless</session-type>
+     <transaction-type>Container</transaction-type>
+     ...
+     </session>
+     ...
      </enterprise-beans>
      * 
      */

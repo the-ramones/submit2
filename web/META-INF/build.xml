@@ -7,7 +7,9 @@
         description="Run the AOP compiler to weave interception code">
 
     <aopc classpath="${classes.dir}">
-        <compilerclasspath><path refid="project.libs"/></compilerclasspath>
+        <compilerclasspath>
+            <path refid="project.libs"/>
+        </compilerclasspath>
         <src path="${classes.dir}"/>
         <include name="**/*.class"/>
     </aopc>

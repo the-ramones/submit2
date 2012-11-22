@@ -58,10 +58,10 @@ public class Company implements java.io.Serializable {
         this.name = name;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, 
-            fetch = FetchType.LAZY, 
-            mappedBy = "company",
-            targetEntity= hb.tools.annotation.Customer.class)
+    @OneToMany(cascade = CascadeType.ALL,
+    fetch = FetchType.LAZY,
+    mappedBy = "company",
+    targetEntity = hb.tools.annotation.Customer.class)
     public Set<Customer> getCustomers() {
         return this.customers;
     }
@@ -70,10 +70,10 @@ public class Company implements java.io.Serializable {
         this.customers = customers;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, 
-            fetch = FetchType.LAZY,
-            mappedBy = "company",
-            targetEntity= hb.tools.annotation.Supplier.class)
+    @OneToMany(cascade = CascadeType.ALL,
+    fetch = FetchType.LAZY,
+    mappedBy = "company",
+    targetEntity = hb.tools.annotation.Supplier.class)
     public Set<Supplier> getSuppliers() {
         return this.suppliers;
     }

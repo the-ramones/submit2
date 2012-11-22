@@ -15,9 +15,9 @@
         <property name="hibernate.connection.pool_size">10</property>
         <property name="hibernate.current_session_context_class">thread</property>
         <!-- transaction options -->
-  <!--  <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</property>
-        <property name="hibernate.transaction.manager_lookup_class">org.hibernate.transaction.TransationManagerLookupFactory</property>
-   -->
+        <!--  <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</property>
+             <property name="hibernate.transaction.manager_lookup_class">org.hibernate.transaction.TransationManagerLookupFactory</property>
+        -->
         <!-- cache options -->
         <!-- <property name="hibernate.cache.provider_class">net.sf.ehcache.hibernate.SingletonEhCacheRegionFactory</property> -->
         <property name="hibernate.cache.provider_class">org.hibernate.cache.HashtableCacheProvider</property>

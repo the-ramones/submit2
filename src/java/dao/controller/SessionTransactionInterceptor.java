@@ -9,6 +9,7 @@ import org.jboss.aop.joinpoint.Invocation;
 
 /**
  * Aspect-oriented approach #4.
+ *
  * @author the-ramones
  */
 public class SessionTransactionInterceptor

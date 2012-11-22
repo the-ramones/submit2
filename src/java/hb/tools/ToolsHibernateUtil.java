@@ -13,7 +13,7 @@ import org.hibernate.cfg.AnnotationConfiguration;
 public class ToolsHibernateUtil {
 
     private static final SessionFactory sessionFactory;
-    
+
     static {
         try {
             // Create the SessionFactory from standard (hibernate.cfg.xml) 
@@ -27,7 +27,7 @@ public class ToolsHibernateUtil {
             throw new ExceptionInInitializerError(ex);
         }
     }
-    
+
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
