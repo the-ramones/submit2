@@ -13,8 +13,8 @@
     </head>
     <body>
         <h1>Goals</h1>
-    <li>
-        <ul>Make Hibernate work -> true</ul>
+        <hr>
+        <ul>Make Hibernate work : true</ul>
         <ul>Hibernate, 3 option of configuration:
             <ul>simple XML *.hbm mapping configuration (hibernate-tool.cfg, hb.tools.* domain classes)</ul>
             <ul>simple Annotation based configuration (hibernate2.cfg (in the root folder!), hb.tools.annotation.* domain classes)</ul>
@@ -29,16 +29,20 @@
                 <ul>last lazy.* packages: duplicated functionality for HibernateLazyInitializationException project</ul>
                 <ul>lazy.* contains @FetchProfile functionality, package-info.java classes, 2-layer support: Hibernate, plain XML</ul>    
             </ul>
-            <ul>RESTful web-services configuration:
-                <ul></ul>
-                <ul></ul>
-                <ul></ul>
-            </ul>        
-    </li>        
-    <form method="GET" action="/filter">
-        <label>Redirect to "Servlet vs. Filter" </label>
-        <input type="button" title="Go!"/>
-    </form>
-    </form>
-</body>
+        </ul>
+        <ul>RESTful web-services configuration:
+            <ul></ul>
+            <ul></ul>
+            <ul></ul>
+        </ul>            
+        <hr>
+        <form method="POST" action="./filter">
+            <label>Redirect to "Test session approaches":</label>
+            <input type="submit" value="Redirect" name="submit" />
+        </form>
+        <form method="GET" action="./jndi">
+            <label>Launch JNDI test</label>
+            <input type="submit" name="submit" value="JNDI test"
+        </form>
+    </body>
 </html>

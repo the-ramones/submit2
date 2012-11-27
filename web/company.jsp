@@ -13,5 +13,6 @@
     </head>
     <body>
         <jsp:useBean class="dao.controller.CompanyController" id="company" scope="page"></jsp:useBean>
+        <h2>CompanyController.class bean property:&nbsp;<jsp:getProperty name="company" property="VALID_COMPANY_INDEX" /></h2>
     </body>
 </html>

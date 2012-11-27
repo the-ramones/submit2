@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-    <filter>
-        <filter-name>HibernateSessionConversationTest</filter-name>
+    <!--  <filter>
+        <filter-name>HibernateSessionConversationFilter</filter-name>
         <filter-class>dao.servlet.HibernateSessionConversationFilter</filter-class>
     </filter>
     <filter>
         <filter-name>HibernateSessionRequestFilter</filter-name>
         <filter-class>dao.servlet.HibernateSessionRequestFilter</filter-class>
     </filter>
-    
     <filter-mapping>
         <filter-name>HibernateSessionRequestFilter</filter-name>
         <servlet-name>SessionRequestServlet</servlet-name>
@@ -16,14 +15,13 @@
     <filter-mapping>
         <filter-name>HibernateSessionConversationFilter</filter-name>
         <servlet-name>SessionConversationServlet</servlet-name>
-    </filter-mapping>
-    
+    </filter-mapping> -->
     <servlet>
         <servlet-name>SessionConversationServlet</servlet-name>
         <servlet-class>dao.servlet.FilterTestServlet</servlet-class>
         <init-param>
             <param-name>dao-factory-class</param-name>
-            <param-value>dao.factory.hibernate.HibernateDaoFactory</param-value>
+            <param-value>dao.factory.HibernateDaoFactory</param-value>
         </init-param>
     </servlet>
     <servlet>
@@ -31,10 +29,29 @@
         <servlet-class>dao.servlet.FilterTestServlet</servlet-class>
         <init-param>
             <param-name>dao-factory-class</param-name>
-            <param-value>dao.factory.hibernate.HibernateDaoFactory</param-value>
+            <param-value>dao.factory.HibernateDaoFactory</param-value>
         </init-param>
     </servlet>
-    
+    <servlet>
+        <servlet-name>GlobalController</servlet-name>
+        <servlet-class>dao.controller.GlobalController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Company</servlet-name>
+        <jsp-file>/company.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>FilterServlet</servlet-name>
+        <jsp-file>/filter-view.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>RetryServlet</servlet-name>
+        <jsp-file>/retry.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>JndiServlet</servlet-name>
+        <servlet-class>dao.controller.JndiServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SessionConversationServlet</servlet-name>
         <url-pattern>/session-per-conversation</url-pattern>
@@ -43,13 +60,41 @@
         <servlet-name>SessionRequestServlet</servlet-name>
         <url-pattern>/session-per-request</url-pattern>
     </servlet-mapping>
-    
+    <servlet-mapping>
+        <servlet-name>Company</servlet-name>
+        <url-pattern>/company-bean</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FilterServlet</servlet-name>
+        <url-pattern>/filter</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RetryServlet</servlet-name>
+        <url-pattern>/retry</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GlobalController</servlet-name>
+        <url-pattern>/сontroller</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>JndiServlet</servlet-name>
+        <url-pattern>/jndi</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>/index.jsp</welcome-file>
     </welcome-file-list>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/not-found.html</location>
+    </error-page>
+    <resource-env-ref>
+        <description>Object factory for CompanyController instances</description>
+        <resource-env-ref-name>bean/CompanyControllerFactory</resource-env-ref-name>
+        <resource-env-ref-type>dao.controller.CompanyController</resource-env-ref-type>
+    </resource-env-ref>
 </web-app>

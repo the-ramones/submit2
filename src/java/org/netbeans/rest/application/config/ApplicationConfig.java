@@ -7,7 +7,7 @@ import javax.ws.rs.core.Application;
  *
  * @author the-ramones
  */
-@javax.ws.rs.ApplicationPath("webresources")
+@javax.ws.rs.ApplicationPath("webresources2")
 public class ApplicationConfig extends Application {
 
     @Override

@@ -4,6 +4,8 @@ import hb.tools.Company;
 import hb.tools.Customer;
 import hb.tools.ToolsHibernateUtil;
 import java.io.Serializable;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.hibernate.HibernateException;
 import org.hibernate.LockMode;
 import org.hibernate.Session;
@@ -19,6 +21,8 @@ import org.junit.Test;
  * @author the-ramones
  */
 public class XmlMappingConfiguration {
+    
+    private Log log = LogFactory.getLog(XmlMappingConfiguration.class);
 
     public static final String TEST_MAPPING = "testMapping";
 
@@ -54,9 +58,9 @@ public class XmlMappingConfiguration {
                     se.close();
                 }
             } catch (Exception e) {
+                log.warn("'testMapping' instances cannot be remobed from database: ", e);
             }
         }
-
     }
 
     @BeforeClass

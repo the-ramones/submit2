@@ -35,9 +35,8 @@ public class FilterTestServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
-
+        
         CompanyDao dao = daoFactory.getCompanyDao();
-
         String action = request.getParameter(ACTION);
         String name = request.getParameter(PARAM_ENTITY_NAME);
         String newName = request.getParameter(PARAM_ENTITY_NEW_NAME);
@@ -75,7 +74,6 @@ public class FilterTestServlet extends HttpServlet {
             }
             request.getSession().setAttribute(CONVERSATION_ENTITY, null);
         }
-
     }
 
     @Override
@@ -85,8 +83,8 @@ public class FilterTestServlet extends HttpServlet {
         try {
             if (daoFactoryName != null) {
                 log.debug("Testing with DAOFactory: " + daoFactoryName);
-                Class daoFactoryClass = Class.forName(daoFactoryName);
-                daoFactory = DaoFactory.instance(daoFactoryClass);
+                Class daoFactoryClass = Class.forName(daoFactoryName);                   
+                daoFactory = DaoFactory.instance(daoFactoryClass);                
             } else {
                 throw new ServletException("Configure servlet with a daoFactoryClass parameter!");
             }

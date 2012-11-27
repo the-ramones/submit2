@@ -132,7 +132,6 @@ public class HibernateSessionConversationFilter implements Filter {
             // Let others handle it... maybe another interceptor for exceptions?
             throw new ServletException(ex);
         }
-
     }
 
     @Override

@@ -1,2 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context antiJARLocking="true" path="/lazy"/>
+<Context antiJARLocking="true" path="/lazy">
+    
+    <Resource name="bean/CompanyControllerFactory" 
+              auth="Container"
+              type="dao.controller.CompanyController"
+              factory="org.apache.naming.factory.BeanFactory"
+              bar="23" />
+    
+</Context>

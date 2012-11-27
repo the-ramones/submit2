@@ -35,7 +35,7 @@ public class SessionTransactionInterceptor
 
             log.debug("Invoking the aspectized service method");
             Object result = invocation.invokeNext();
-
+            
             // Commit and cleanup
             if (!isActive) {
                 log.debug("Committing the database transaction");

@@ -19,31 +19,49 @@ import lazy.domain.Supplier;
  * @author the-ramones
  */
 @Stateless
-/*
- * @TransactionManagement(value=TransactionManagementType.CONTAINER)
- * Maybe, when we use CMT 
+/**
+ * @TransactionManagement(value=TransactionManagementType.CONTAINER) Maybe, when
+ * we use CMT
  */
 public class CompanyController {
 
-    private Integer VALID_COMPANY_INDEX = 1;
+    private String test = "Test property";
+
+    public String getTest() {
+        return test;
+    }
+
+    public void setTest(String test) {
+        this.test = test;
+    }
+    
+    private Integer index = 2;
+
+    public Integer getIndex() {
+        return index;
+    }
+
+    public void setIndex(Integer index) {
+        this.index = index;
+    }
     @PersistenceContext
     private EntityManager em;
     @EJB
     CompanyDao companyDao;
 
-    /*
-     * Approach #3. EJB-CMT tie
-     * CMT - container managed transaction, EJB 3.0 type
+    /**
+     * Approach #3. EJB-CMT tie CMT - container managed transaction, EJB 3.0
+     * type
      */
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void execute() {
 
-        List<Customer> customers = companyDao.getCustomers(VALID_COMPANY_INDEX);
-        List<Supplier> suppliers = companyDao.getSuppliers(VALID_COMPANY_INDEX);
+        List<Customer> customers = companyDao.getCustomers(index);
+        List<Supplier> suppliers = companyDao.getSuppliers(index);
 
-        Company company = companyDao.findById(VALID_COMPANY_INDEX, false);
+        Company company = companyDao.findById(index, false);
     }
-    /*
+    /**
      * Or in ejb-jar.xml something like this (vs Annotations)
      * 
      <enterprise-beans>
