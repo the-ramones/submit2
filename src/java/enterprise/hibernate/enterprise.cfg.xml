@@ -7,8 +7,8 @@
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/enterprise?zeroDateTimeBehavior=convertToNull</property>
         <property name="hibernate.connection.username">netbeans</property>
         <property name="hibernate.connection.password">netbeans</property>
-       <!-- <property name="hibernate.connection.release_mode">after_transaction</property> -->
-        <!-- <property name="hibernate.connection.pool_size">64</property> -->
+        <property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+        <property name="hibernate.connection.release_mode">after_transaction</property>
         <!-- FIXME  <property name="hibernate.connection.isolation"></property> -->
         <!-- <property name="hibernate.connection.datasource"></property> -->
 
@@ -17,13 +17,15 @@
         <!-- using with Spring 
         <property name="hibernate.session_factory_name"></property> 
         -->
+        
+        <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+        <property name="hibernate.generate_statistics">true</property>
       
         <!-- transaction options -->
-        <!--
-        <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</property>
+<!--        <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</property>
         <property name="hibernate.transaction.manager_lookup_class">org.hibernate.transaction.TransationManagerLookupFactory</property>
-        -->
-
+-->
         <!-- cache options -->
         <!-- <property name="hibernate.cache.provider_class">net.sf.ehcache.hibernate.SingletonEhCacheRegionFactory</property>  -->
         <property name="hibernate.c3p0.min_size">8</property>
