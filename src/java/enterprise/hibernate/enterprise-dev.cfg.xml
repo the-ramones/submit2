@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/enterprise?zeroDateTimeBehavior=convertToNull</property>
+        <property name="hibernate.connection.username">netbeans</property>
+        <property name="hibernate.connection.password">netbeans</property>
+        <property name="hibernate.connection.release_mode">after_transaction</property>
+        <property name="hibernate.connection.pool_size">64</property>
+        <!-- FIXME  <property name="hibernate.connection.isolation"></property> -->
+        <!-- <property name="hibernate.connection.datasource"></property> -->
+
+        <!-- FIXME replace with JTA -->
+        <property name="hibernate.current_session_context_class">thread</property>
+        <!-- using with Spring 
+        <property name="hibernate.session_factory_name"></property> 
+        -->
+      
+        <!-- transaction options -->
+        <!--
+        <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</property>
+        <property name="hibernate.transaction.manager_lookup_class">org.hibernate.transaction.TransationManagerLookupFactory</property>
+        -->
+
+        <!-- cache options -->
+        <!-- 
+        <property name="hibernate.cache.provider_class">net.sf.ehcache.hibernate.SingletonEhCacheRegionFactory</property> 
+        -->
+        <property name="hibernate.cache.provider_class"> org.hibernate.cache.HashtableCacheProvider</property>
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <property name="hibernate.cache.use_query_cache">true</property>
+        <property name="hibernate.cache.use_minimal_puts">true</property>
+        <property name="hibernate.cache.use_query_cache">true</property>
+
+        <!-- common settings -->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.use_sql_comments">false</property>
+        <property name="hibernate.default_schema">enterprise</property>
+
+        <!-- mappings -->
+        <mapping class="enterprise.hibernate.Report" />
+    </session-factory>
+</hibernate-configuration>
