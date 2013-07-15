@@ -25,8 +25,9 @@
         <property name="hibernate.cache.provider_configuration_file_resource_path">ehcache.xml</property>
         
         <!-- FIXME replace with JTA -->
-        <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
-          <property name="hibernate.current_session_context_class">thread</property>
+        <property name="hibernate.transaction.manager_lookup_class">org.hibernate.transaction.JBossTransactionManagerLookup</property>
+        <property name="hibernate.current_session_context_class">jta</property>
+        <property name="hibernate.transaction.auto_close_session">true</property>
 
         <!-- <property name="hibernate.current_session_context_class">thread</property> -->
         <!-- using with Spring 
