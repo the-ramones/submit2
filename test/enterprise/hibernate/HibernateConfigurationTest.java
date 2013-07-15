@@ -35,7 +35,7 @@ public class HibernateConfigurationTest {
 
         //FIXME: remove that
         System.out.println(report.getPerformer());
-        
+
         assertNotNull(report);
         assertEquals(report.getId(), id);
 
