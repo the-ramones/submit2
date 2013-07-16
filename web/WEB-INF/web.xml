@@ -36,6 +36,10 @@
         <servlet-name>hib-test</servlet-name>
         <url-pattern>/hib-test</url-pattern>
     </servlet-mapping>
+    <pre-destroy>
+        <lifecycle-callback-class>enterpise.util.DestroyUtility</lifecycle-callback-class>
+        <lifecycle-callback-method>cleanC3P0</lifecycle-callback-method>
+    </pre-destroy>
     <session-config>
         <session-timeout>
             30

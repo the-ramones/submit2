@@ -5,14 +5,6 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.connection.datasource">jdbc/enterpriseDS</property>        
 
-        <!-- connection pooling -->
-<!--        <property name="hibernate.c3p0.min_size">8</property>
-        <property name="hibernate.c3p0.max_size">64</property>
-        <property name="hibernate.c3p0.max_statements">1024</property>
-        <property name="hibernate.c3p0.acquire_increment">4</property>        
-        <property name="hibernate.c3p0.timeout">300</property>
-        <property name="hibernate.c3p0.idle_test_period">1200</property>-->
-
         <!-- cache options -->
         <property name="hibernate.cache.provider_class">net.sf.ehcache.hibernate.SingletonEhCacheProvider</property>
         <property name="hibernate.cache.use_second_level_cache">true</property>

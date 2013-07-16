@@ -49,7 +49,6 @@
                             st = conn.prepareStatement(SELECT_ALL, ResultSet.FETCH_FORWARD, ResultSet.CONCUR_READ_ONLY);
                             st.setInt(1, LIMIT);
                             rs = st.executeQuery();
-                            System.out.println("!!!!" + rs);
                             while (rs.next()) {
                     %>
                     <tr>
