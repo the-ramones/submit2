@@ -3,20 +3,15 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/enterprise?zeroDateTimeBehavior=convertToNull</property>
-        <property name="hibernate.connection.username">netbeans</property>
-        <property name="hibernate.connection.password">netbeans</property>
-        <property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
-        <property name="hibernate.connection.release_mode">after_transaction</property>
+        <property name="hibernate.connection.datasource">jdbc/enterpriseDS</property>        
 
         <!-- connection pooling -->
-        <property name="hibernate.c3p0.min_size">8</property>
+<!--        <property name="hibernate.c3p0.min_size">8</property>
         <property name="hibernate.c3p0.max_size">64</property>
         <property name="hibernate.c3p0.max_statements">1024</property>
         <property name="hibernate.c3p0.acquire_increment">4</property>        
         <property name="hibernate.c3p0.timeout">300</property>
-        <property name="hibernate.c3p0.idle_test_period">1200</property>
+        <property name="hibernate.c3p0.idle_test_period">1200</property>-->
 
         <!-- cache options -->
         <property name="hibernate.cache.provider_class">net.sf.ehcache.hibernate.SingletonEhCacheProvider</property>
@@ -25,7 +20,8 @@
         <property name="hibernate.cache.provider_configuration_file_resource_path">ehcache.xml</property>
         
         <!-- FIXME replace with JTA -->
-        <property name="hibernate.transaction.manager_lookup_class">org.hibernate.transaction.JBossTransactionManagerLookup</property>
+        <!--<property name="hibernate.transaction.manager_lookup_class">org.hibernate.transaction.JBossTransactionManagerLookup</property>-->
+        <property name="hibernate.transaction.manager_lookup_class">org.hibernate.transaction.JDBCTransactionManagerLookup</property>
         <property name="hibernate.current_session_context_class">jta</property>
         <property name="hibernate.transaction.auto_close_session">true</property>
 

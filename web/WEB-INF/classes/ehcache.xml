@@ -33,7 +33,7 @@ CacheManager Configuration
     net.sf.ehcache.transaction.manager.TransactionManagerLookup interface.
     -->
 
-    <transactionManagerLookup class="org.hibernate.transaction.JBossTransactionManagerLookup" properties="jndiName=java:/TransactionManager" propertySeparator=";"/>
+    <!--<transactionManagerLookup class="org.hibernate.transaction.JBossTransactionManagerLookup" properties="jndiName=java:/TransactionManager" propertySeparator=";"/>-->
 
     <!--
     CacheManagerEventListener
