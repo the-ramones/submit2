@@ -22,7 +22,16 @@
     </context-param>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
+    </listener>   
+    <servlet>
+        <servlet-name>initializer</servlet-name>
+        <servlet-class>enterprise.util.InitServlet</servlet-class> 
+        <load-on-startup>1</load-on-startup>
+    </servlet> 
+    <pre-destroy>
+        <lifecycle-callback-class>enterprise.util.PreDestroyCleaner</lifecycle-callback-class>
+        <lifecycle-callback-method>cleanupC3P0</lifecycle-callback-method>
+    </pre-destroy>
     <servlet>
         <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>

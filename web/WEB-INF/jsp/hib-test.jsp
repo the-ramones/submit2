@@ -38,9 +38,7 @@
                                 "SELECT id, startDate, endDate, performer, activity FROM enterprise.reports LIMIT 0, ?";
                         final int LIMIT = 50;
                         Context env = (Context) new InitialContext().lookup("java:comp/env");
-                        System.out.println("context: " + env);
                         DataSource enterpriseDs = (DataSource) env.lookup("jdbc/enterpriseDS");
-                        System.out.println("ds: " + enterpriseDs);
                         Connection conn = null;
                         PreparedStatement st = null;
                         ResultSet rs = null;
@@ -49,7 +47,6 @@
                             st = conn.prepareStatement(SELECT_ALL, ResultSet.FETCH_FORWARD, ResultSet.CONCUR_READ_ONLY);
                             st.setInt(1, LIMIT);
                             rs = st.executeQuery();
-                            System.out.println("!!!!" + rs);
                             while (rs.next()) {
                     %>
                     <tr>

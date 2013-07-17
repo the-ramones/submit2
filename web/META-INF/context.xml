@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context antiJARLocking="true" path="/kulitski">
-    <Resource auth="container" 
-              driverClassName="com.mysql.jdbc.Driver" 
-              factory="org.apache.naming.factory.BeanFactory" 
-              type="com.mchange.v2.c3p0.ComboPooledDataSource"
-              name="jdbc/enterpriseDS" 
-              password="netbeans"
-              url="jdbc:mysql://127.0.0.1:3306/enterprise?autoReconnect=true" 
-              username="netbeans"
-    />
+<Resource auth="Container" 
+          description="Enterprise DS"
+          driverClass="com.mysql.jdbc.Driver"
+          name="jdbc/enterpriseDS"
+          user="netbeans"
+          password="netbeans"
+          factory="org.apache.naming.factory.BeanFactory"
+          type="com.mchange.v2.c3p0.ComboPooledDataSource" 
+          jdbcUrl="jdbc:mysql://localhost:3306/enterprise?autoReconnect=true" />
 </Context>
  
