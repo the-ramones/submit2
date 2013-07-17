@@ -3,7 +3,7 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="hibernate.connection.datasource">jdbc/enterpriseDS</property>        
+        <property name="hibernate.connection.datasource">java:comp/env/jdbc/enterpriseDS</property>        
 
         <!-- cache options -->
         <property name="hibernate.cache.provider_class">net.sf.ehcache.hibernate.SingletonEhCacheProvider</property>
@@ -13,8 +13,8 @@
         
         <!-- FIXME replace with JTA -->
         <!--<property name="hibernate.transaction.manager_lookup_class">org.hibernate.transaction.JBossTransactionManagerLookup</property>-->
-        <property name="hibernate.transaction.manager_lookup_class">org.hibernate.transaction.JDBCTransactionManagerLookup</property>
-        <property name="hibernate.current_session_context_class">jta</property>
+        <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+        <property name="hibernate.current_session_context_class">thread</property>
         <property name="hibernate.transaction.auto_close_session">true</property>
 
         <!-- <property name="hibernate.current_session_context_class">thread</property> -->

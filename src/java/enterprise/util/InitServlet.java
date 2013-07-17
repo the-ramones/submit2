@@ -24,7 +24,7 @@ public class InitServlet extends HttpServlet {
         try {
             ((DataSource)(new InitialContext().lookup(ENTERPRISE_DS))).getConnection();
         } catch (SQLException ex) {
-            LOG.info("Cannot initialize datasource: " + ENTERPRISE_DS
+            LOG.info("Initialize datasource: " + ENTERPRISE_DS
                     + ". Check the datasource settings at the META_INF/context.xml");
         } catch (NamingException ex) {
             LOG.severe("Cannot initialize datasource: " + ENTERPRISE_DS

@@ -49,7 +49,10 @@ CacheManager Configuration
     Cache configuration
     ===================
    -->
-    <cache name="memBound" maxBytesLocalHeap="100m" maxBytesLocalOffHeap="4g" maxBytesLocalDisk="200g" />
+    <cache name="memBound"
+           maxBytesLocalHeap="100m" 
+           maxBytesLocalOffHeap="4g"
+           maxBytesLocalDisk="200g" />
 
     <!--
     Transactions
@@ -73,7 +76,14 @@ CacheManager Configuration
 
     The defaultCache has an implicit name "default" which is a reserved cache name.
     -->
-    <defaultCache maxEntriesLocalHeap="10000" eternal="false" timeToIdleSeconds="120" timeToLiveSeconds="120" diskSpoolBufferSizeMB="30" maxEntriesLocalDisk="10000000" diskExpiryThreadIntervalSeconds="120" memoryStoreEvictionPolicy="LRU">
+    <defaultCache maxEntriesLocalHeap="10000" 
+                  eternal="false" 
+                  timeToIdleSeconds="120" 
+                  timeToLiveSeconds="120" 
+                  diskSpoolBufferSizeMB="30" 
+                  maxEntriesLocalDisk="10000000"
+                  diskExpiryThreadIntervalSeconds="120"
+                  memoryStoreEvictionPolicy="LRU">
         <persistence strategy="localTempSwap"/>
     </defaultCache>
 
@@ -91,7 +101,15 @@ CacheManager Configuration
     disk cache, which in this configuration will go to wherever java.io.tmp is
     defined on your system. On a standard Linux system this will be /tmp"
     -->
-    <cache name="sampleCache1" maxEntriesLocalHeap="10000" maxEntriesLocalDisk="1000" eternal="false" diskSpoolBufferSizeMB="20" timeToIdleSeconds="300" timeToLiveSeconds="600" memoryStoreEvictionPolicy="LFU" transactionalMode="off">
+    <cache name="sampleCache1" 
+           maxEntriesLocalHeap="10000"
+           maxEntriesLocalDisk="1000" 
+           eternal="false" 
+           diskSpoolBufferSizeMB="20"
+           timeToIdleSeconds="300"
+           timeToLiveSeconds="600"
+           memoryStoreEvictionPolicy="LFU"
+           transactionalMode="off">
         <persistence strategy="localTempSwap"/>
     </cache>
 
@@ -102,7 +120,10 @@ CacheManager Configuration
     is also the maximum cache size. Note that when a cache is eternal, timeToLive and
     timeToIdle are not used and do not need to be specified.
     -->
-    <cache name="sampleCache2" maxEntriesLocalHeap="1000" eternal="true" memoryStoreEvictionPolicy="FIFO"/>
+    <cache name="sampleCache2" 
+           maxEntriesLocalHeap="1000" 
+           eternal="true"
+           memoryStoreEvictionPolicy="FIFO"/>
 
 
     <!--
@@ -110,7 +131,15 @@ CacheManager Configuration
     persistent between cache and VM restarts. The disk expiry thread interval is set to 10
     minutes, overriding the default of 2 minutes.
     -->
-    <cache name="sampleCache3" maxEntriesLocalHeap="500" eternal="false" overflowToDisk="true" diskPersistent="true" timeToIdleSeconds="300" timeToLiveSeconds="600" diskExpiryThreadIntervalSeconds="1" memoryStoreEvictionPolicy="LFU">
+    <cache name="sampleCache3"
+           maxEntriesLocalHeap="500" 
+           eternal="false" 
+           overflowToDisk="true"
+           diskPersistent="true" 
+           timeToIdleSeconds="300" 
+           timeToLiveSeconds="600" 
+           diskExpiryThreadIntervalSeconds="1" 
+           memoryStoreEvictionPolicy="LFU">
     </cache>
  
     <!--
