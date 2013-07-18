@@ -17,7 +17,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Hibernate Configuration Test Page</title>
+        <title>Plain JDBC Configuration Test Page</title>
     </head>
     <body>
         <div>

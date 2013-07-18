@@ -17,7 +17,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Hibernate Configuration Test Page</title>
+        <title>Hibernate Cached Configuration Test Page</title>
     </head>
     <body>
         <div>
@@ -41,6 +41,7 @@
                             sf = enterprise.hibernate.EnterpriseHibernateUtil.getSessionFactory();
                             s = sf.openSession();
                             Criteria criteria = s.createCriteria(Report.class);
+                            criteria.setCacheable(true);    
                             List<Report> l = criteria.setFetchSize(LIMIT).list();
                             for (Report r : l) {
                             %>
@@ -52,13 +53,13 @@
                                 <td><%= r.getActivity()%></td>
                             </tr>
                             <%
-                            }
-                        } catch (HibernateException e) {
-                        } finally {
-                            if (s != null) {
-                                s.close();
-                            }
-                        }
+                    }
+                } catch (HibernateException e) {
+                } finally {
+                    if (s != null) {
+                        s.close();
+                    }
+                }
                     %>
                 </tbody>
             </table>

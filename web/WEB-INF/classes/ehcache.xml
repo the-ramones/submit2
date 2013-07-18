@@ -1,183 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-CacheManager Configuration
-==========================
--->
 <ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
          xsi:noNamespaceSchemaLocation="ehcache.xsd" 
-         updateCheck="true"
-         monitoring="autodetect" 
-         dynamicConfig="true" 
-         maxBytesLocalHeap="400M"
-         maxBytesLocalOffHeap="2G">
-
-    <!--
-    DiskStore configuration
-    =======================
-    -->
+         updateCheck="false"
+         monitoring="off" 
+         dynamicConfig="false">
+    
     <diskStore path="java.io.tmpdir"/>
-
-    <!--
-    TransactionManagerLookup configuration
-    ======================================
-    This class is used by ehcache to lookup the JTA TransactionManager use in the application
-    using an XA enabled ehcache. If no class is specified then DefaultTransactionManagerLookup
-    will find the TransactionManager in the following order
-
-     *GenericJNDI (i.e. jboss, where the property jndiName controls the name of the
-                    TransactionManager object to look up)
-     *Bitronix
-     *Atomikos
-
-    You can provide you own lookup class that implements the
-    net.sf.ehcache.transaction.manager.TransactionManagerLookup interface.
-    -->
-
-    <!--<transactionManagerLookup class="org.hibernate.transaction.JBossTransactionManagerLookup" properties="jndiName=java:/TransactionManager" propertySeparator=";"/>-->
-
-    <!--
-    CacheManagerEventListener
-    =========================
-    Specifies a CacheManagerEventListenerFactory which is notified when Caches are added
-    or removed from the CacheManager.
-
-    If no class is specified, no listener is created. There is no default.
-    -->
-    <cacheManagerEventListenerFactory class="" properties=""/>
-  
-   <!--
-    Cache configuration
-    ===================
-   -->
-    <cache name="memBound"
-           maxBytesLocalHeap="100m" 
-           maxBytesLocalOffHeap="4g"
-           maxBytesLocalDisk="200g" />
-
-    <!--
-    Transactions
-    ++++++++++++
-
-    To enable an ehcache as transactions, set the transactionalMode
-
-    transactionalMode="xa" - high performance JTA/XA implementation
-    transactionalMode="xa_strict" - canonically correct JTA/XA implementation
-    transactionMode="local" - high performance local transactions involving caches only
-    transactionalMode="off" - the default, no transactions
-
-    If set, all cache operations will need to be done through transactions.
-
-    To prevent users keeping references on stored elements and modifying them outside of any transaction's control,
-    transactions also require the cache to be configured copyOnRead and copyOnWrite.
-    -->
-
-    <!--
-    Default Cache configuration. 
-
-    The defaultCache has an implicit name "default" which is a reserved cache name.
-    -->
-    <defaultCache maxEntriesLocalHeap="10000" 
-                  eternal="false" 
-                  timeToIdleSeconds="120" 
-                  timeToLiveSeconds="120" 
-                  diskSpoolBufferSizeMB="30" 
-                  maxEntriesLocalDisk="10000000"
-                  diskExpiryThreadIntervalSeconds="120"
-                  memoryStoreEvictionPolicy="LRU">
-        <persistence strategy="localTempSwap"/>
-    </defaultCache>
-
-    <!--
-    Sample caches. Following are some example caches. Remove these before use.
-    -->
-
-    <!--
-    Sample cache named sampleCache1
-    This cache contains a maximum in memory of 10000 elements, and will expire
-    an element if it is idle for more than 5 minutes and lives for more than
-    10 minutes.
-
-    If there are more than 10000 elements it will overflow to the
-    disk cache, which in this configuration will go to wherever java.io.tmp is
-    defined on your system. On a standard Linux system this will be /tmp"
-    -->
-    <cache name="sampleCache1" 
-           maxEntriesLocalHeap="10000"
-           maxEntriesLocalDisk="1000" 
+    
+    <defaultCache
+        maxElementsInMemory="10000"
+        eternal="false"
+        timeToIdleSeconds="120"
+        timeToLiveSeconds="360"
+        overflowToDisk="true"
+    />
+    
+    <!-- entity caches -->
+    <cache name="enterprise.hibernate.Report"
+           maxElementsInMemory="500"
+           eternal="true"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"
+                      maxBytesLocalHeap="128M" 
+           maxBytesLocalDisk="512M" 
            eternal="false" 
-           diskSpoolBufferSizeMB="20"
+           diskSpoolBufferSizeMB="20" 
            timeToIdleSeconds="300"
-           timeToLiveSeconds="600"
+           timeToLiveSeconds="600" 
            memoryStoreEvictionPolicy="LFU"
            transactionalMode="off">
         <persistence strategy="localTempSwap"/>
-    </cache>
-
-
-    <!--
-    Sample cache named sampleCache2
-    This cache has a maximum of 1000 elements in memory. There is no overflow to disk, so 1000
-    is also the maximum cache size. Note that when a cache is eternal, timeToLive and
-    timeToIdle are not used and do not need to be specified.
-    -->
-    <cache name="sampleCache2" 
-           maxEntriesLocalHeap="1000" 
-           eternal="true"
-           memoryStoreEvictionPolicy="FIFO"/>
-
-
-    <!--
-    Sample cache named sampleCache3. This cache overflows to disk. The disk store is
-    persistent between cache and VM restarts. The disk expiry thread interval is set to 10
-    minutes, overriding the default of 2 minutes.
-    -->
-    <cache name="sampleCache3"
-           maxEntriesLocalHeap="500" 
+    />
+    
+    <!-- hibernate query caches -->
+    <cache name="org.hibernate.cache.StandardQueryCache"
+           maxElementsInMemory="10000" 
            eternal="false" 
-           overflowToDisk="true"
-           diskPersistent="true" 
-           timeToIdleSeconds="300" 
-           timeToLiveSeconds="600" 
-           diskExpiryThreadIntervalSeconds="1" 
-           memoryStoreEvictionPolicy="LFU">
-    </cache>
- 
-    <!--
-    Sample Terracotta clustered cache named sampleTerracottaCache.
-    This cache uses Terracotta to cluster the contents of the cache.
-    -->
-    <!--
-    <cache name="sampleTerracottaCache"
-           maxBytesLocalHeap="10m"
-           eternal="false"
            timeToIdleSeconds="3600"
-           timeToLiveSeconds="1800">
-        <terracotta/>
+           timeToLiveSeconds="3600"
+           emoryStoreEvictionPolicy="FIFO">
     </cache>
-    -->
 
-    <!--
-      Sample xa enabled cache named xaCache
-    <cache name="xaCache"
-           maxEntriesLocalHeap="500"
-           eternal="false"
-           timeToIdleSeconds="300"
-           timeToLiveSeconds="600"
-           diskExpiryThreadIntervalSeconds="1"
-           transactionalMode="xa_strict">
+    <cache name="org.hibernate.cache.UpdateTimestampsCache"
+           maxElementsInMemory="10000"
+           eternal="true">
     </cache>
-    -->
-  
-    <!--
-      Sample, for Enterprise Ehcache only, demonstrating a tiered cache with in-memory, off-heap and disk stores. In this example the in-memory (on-heap) store is limited to 10,000 items ... which for example for 1k items would use 10MB of memory, the off-heap store is limited to 4GB and the disk store is unlimited in size.
-    <cache name="tieredCache"
-           maxEntriesLocalHeap="10000"
-           eternal="false"
-           timeToLiveSeconds="600"
-           overflowToOffHeap="true"
-           maxBytesLocalOffHeap="4g"
-           diskExpiryThreadIntervalSeconds="1">
-        <persistence strategy="localTempSwap"/>
-     </cache>
-    -->
+
 </ehcache>

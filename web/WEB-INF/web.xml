@@ -19,6 +19,10 @@
         <jsp-file>/WEB-INF/jsp/test/hib-test.jsp</jsp-file>
     </servlet>
     <servlet>
+        <servlet-name>hib-cached-test</servlet-name>
+        <jsp-file>/WEB-INF/jsp/test/hib-cached-test.jsp</jsp-file>
+    </servlet>
+    <servlet>
         <servlet-name>initializer</servlet-name>
         <servlet-class>enterprise.util.InitServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
@@ -35,6 +39,10 @@
     <servlet-mapping>
         <servlet-name>hib-test</servlet-name>
         <url-pattern>/hib-test</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>hib-cached-test</servlet-name>
+        <url-pattern>/hib-cached-test</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>jdbc-test</servlet-name>
