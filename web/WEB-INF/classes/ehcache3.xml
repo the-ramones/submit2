@@ -1,0 +1,38 @@
+    
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:noNamespaceSchemaLocation="ehcache.xsd" 
+         maxBytesLocalHeap="1g"
+         maxBytesLocalOffHeap="4g"
+         maxBytesLocalDisk="100g" >
+
+        
+    <cache name="explicitlyAllocatedCache1"
+           maxBytesLocalHeap="50m"
+           maxBytesLocalOffHeap="200m"
+           timeToLiveSeconds="100">
+    </cache>
+    
+    <cache name="explicitlyAllocatedCache2"
+           maxLocalHeap="10%"
+           maxBytesLocalOffHeap="200m"
+           timeToLiveSeconds="100">
+    </cache>
+
+    <!-- overflows automatically to off heap and disk because no specific override and resources are set at the CacheManager level -->
+    <cache name="automaticallyAllocatedCache1"
+           timeToLiveSeconds="100">
+    </cache>
+    
+    <!-- Will share in OnHeap but not the other resource pools -->
+    <cache name="automaticallyAllocatedCache2"
+           timeToLiveSeconds="100"
+           overflowToOffHeap="false"
+           overflowToDisk="false">
+    </cache>
+    
+    <cache name="pinnedCache"
+           timeToLiveSeconds="100">
+        <pinning store="inMemory" />
+    </cache>
+    
+</ehcache>
