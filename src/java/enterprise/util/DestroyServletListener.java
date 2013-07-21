@@ -29,7 +29,7 @@ public class DestroyServletListener implements ServletContextListener {
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         cleanupC3P0();
-        cleanupEhcache();
+        // cleanupEhcache();
     }
 
     private void cleanupC3P0() {

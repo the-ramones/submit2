@@ -20,8 +20,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
  */
 @Entity
 @Table(name = "reports", catalog = "enterprise")
-//@Cacheable
-@IgnoreSizeOf
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Report implements java.io.Serializable {
 

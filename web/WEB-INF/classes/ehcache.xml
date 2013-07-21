@@ -8,7 +8,8 @@
          maxBytesLocalOffHeap="512M"
          maxBytesLocalDisk="1G"    
          name="enterpriseCacheManager">
-    <diskStore path="java.io.tmpdir"/>
+    
+    <diskStore path="java.io.tmpdir" />
     
     <defaultCache
         maxElementsInMemory="10000"     
@@ -25,10 +26,11 @@
            maxBytesLocalOffHeap="256M"
            maxBytesLocalDisk="512M"
            eternal="true"
+           diskSpoolBufferSizeMB="32"
            timeToIdleSeconds="0"
            timeToLiveSeconds="0"
            memoryStoreEvictionPolicy="LFU">
-        <persistence strategy="localTempSwap" />
+        <persistence strategy="localTempSwap" synchronousWrites="false"/>
     </cache>
     
     <!-- hibernate query caches -->
@@ -40,7 +42,7 @@
            timeToIdleSeconds="3600"
            timeToLiveSeconds="3600"
            memoryStoreEvictionPolicy="FIFO">
-        <persistence strategy="localTempSwap" />
+        <persistence strategy="localTempSwap" synchronousWrites="false"/>
     </cache>
 
     <!-- for hibernate first-level cache -->
