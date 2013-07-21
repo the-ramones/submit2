@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import net.sf.ehcache.pool.sizeof.annotations.IgnoreSizeOf;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 //import javax.persistence.Cacheable;
@@ -20,6 +21,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Table(name = "reports", catalog = "enterprise")
 //@Cacheable
+@IgnoreSizeOf
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Report implements java.io.Serializable {
 

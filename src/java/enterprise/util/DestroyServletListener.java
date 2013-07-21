@@ -9,6 +9,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import net.sf.ehcache.CacheManager;
 
 /**
  * Destroy C3P0 pool and release resources
@@ -19,6 +20,7 @@ public class DestroyServletListener implements ServletContextListener {
 
     private static final Logger LOG = Logger.getLogger(InitServlet.class.getName());
     public static final String ENTERPRISE_DS = "java:comp/env/jdbc/enterpriseDS";
+    public static final String ENTERPRISE_CACHE_MANAGER = "enterpriseCacheManager";
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
@@ -27,6 +29,7 @@ public class DestroyServletListener implements ServletContextListener {
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         cleanupC3P0();
+        cleanupEhcache();
     }
 
     private void cleanupC3P0() {
@@ -45,5 +48,22 @@ public class DestroyServletListener implements ServletContextListener {
             LOG.severe("Cannot desproy C3P0 pooled datasource " + ENTERPRISE_DS
                     + "It may cause memory leaks");
         }
+    }
+
+    private void cleanupEhcache() {
+        LOG.info("Cleaning of Ehcache '" + ENTERPRISE_CACHE_MANAGER
+                + "' CacheManager resources");
+        try {
+            CacheManager cacheManager =
+                    CacheManager.getCacheManager(ENTERPRISE_CACHE_MANAGER);
+            cacheManager.clearAll();
+            cacheManager.shutdown();
+            
+        } catch (Exception e) {
+            LOG.severe("Cannot cleanup '" + ENTERPRISE_CACHE_MANAGER
+                    + "' Ehcache CacheManager resources caused by "
+                    + e.getMessage());
+        }
+
     }
 }

@@ -10,6 +10,9 @@
     <listener>
         <listener-class>enterprise.util.DestroyServletListener</listener-class>
     </listener>
+    <listener>
+        <listener-class>net.sf.ehcache.constructs.web.ShutdownListener</listener-class>
+    </listener>
     <servlet>
         <servlet-name>jdbc-test</servlet-name>
         <jsp-file>/WEB-INF/jsp/test/jdbc-test.jsp</jsp-file>
