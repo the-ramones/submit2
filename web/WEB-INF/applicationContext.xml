@@ -8,7 +8,7 @@
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
-    <bean id="jotm" class="org.springframework.transaction.jta.JotmFactoryBean"/>
+<!--    <bean id="jotm" class="org.springframework.transaction.jta.JotmFactoryBean"/>
     <bean id="enterpriseTransactionManager" 
           class="org.springframework.transaction.jta.JtaTransactionManager">
         <property name="userTransaction">
@@ -31,7 +31,7 @@
     </prop>
    </props>
   </property>
- </bean>
+ </bean>-->
     
     
     <!--bean id="propertyConfigurer"
