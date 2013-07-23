@@ -26,7 +26,7 @@ public class Report implements java.io.Serializable {
     private Date startDate;
     private Date endDate;
     private String performer;
-    private String activity; com.mysql.jdbc.jdbc2.optional.MysqlXADataSource
+    private String activity;
     
     public Report() {
     }

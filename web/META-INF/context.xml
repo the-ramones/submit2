@@ -1,4 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context antiJARLocking="true" path="/kulitski">
-  <Resource auth="Container" description="Enterprise DS" driverClass="com.mysql.jdbc.Driver" factory="org.apache.naming.factory.BeanFactory" jdbcUrl="jdbc:mysql://localhost:3306/enterprise?autoReconnect=true" name="jdbc/enterpriseDS" password="netbeans" type="com.mchange.v2.c3p0.ComboPooledDataSource" user="netbeans"/>
+  <Resource auth="Container"
+            description="Enterprise DS"
+            driverClass="com.mysql.jdbc.Driver" 
+            factory="org.apache.naming.factory.BeanFactory"
+            jdbcUrl="jdbc:mysql://localhost:3306/enterprise?autoReconnect=true"
+            name="jdbc/enterpriseDS" 
+            password="netbeans" 
+            type="com.mchange.v2.c3p0.ComboPooledDataSource"
+            user="netbeans"/>
+  
+    <Resource name="jdbc/mydatasource" 
+              auth="Container" 
+              type="javax.sql.DataSource"
+              factory="bitronix.tm.resource.ResourceObjectFactory" 
+              uniqueName="jdbc/mydatasource" />
+ 
+    <Resource name="jdbc/exampleNonXADS"
+              auth="Container"
+              type="javax.sql.DataSource"
+              factory="bitronix.tm.resource.ResourceObjectFactory" 
+              uniqueName="jdbc/exampleNonXADS" />
+ 
+</Context>
 </Context>
