@@ -4,15 +4,17 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/applicationContext.xml</param-value>
     </context-param>
+    
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
     <listener>
         <listener-class>enterprise.util.DestroyServletListener</listener-class>
     </listener>
-    <listener>
+ <!--   <listener>
         <listener-class>net.sf.ehcache.constructs.web.ShutdownListener</listener-class>
-    </listener>
+    </listener> -->
+    
     <servlet>
         <servlet-name>jdbc-test</servlet-name>
         <jsp-file>/WEB-INF/jsp/test/jdbc-test.jsp</jsp-file>
@@ -24,6 +26,10 @@
     <servlet>
         <servlet-name>hib-cached-test</servlet-name>
         <jsp-file>/WEB-INF/jsp/test/hib-cached-test.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>hib-jta-test</servlet-name>
+        <jsp-file>/WEB-INF/jsp/test/hib-jta-test.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>initializer</servlet-name>
@@ -51,6 +57,10 @@
         <servlet-name>jdbc-test</servlet-name>
         <url-pattern>/jdbc-test</url-pattern>
     </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>hib-jta-test</servlet-name>
+        <url-pattern>/hib-jta-test</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -59,6 +69,15 @@
     <welcome-file-list>
         <welcome-file>redirect.jsp</welcome-file>
     </welcome-file-list>
+ 
+    <resource-ref>
+        <description>
+            Recource reference to the Mysql 'registry' database
+        </description>
+        <res-ref-name>jdbc/registryDS</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
     <resource-ref>
         <description>
             Recource reference to the Mysql 'enterprise' database
@@ -71,6 +90,7 @@
         </res-type>
         <res-auth>Container</res-auth>
     </resource-ref>
+    
     <pre-destroy>
         <lifecycle-callback-class>enterprise.util.PreDestroyCleaner</lifecycle-callback-class>
         <lifecycle-callback-method>cleanupC3P0</lifecycle-callback-method>

@@ -19,14 +19,14 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
  */
 @Entity
 @Table(name = "reports", catalog = "enterprise")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+// @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Report implements java.io.Serializable {
 
     private Long id;
     private Date startDate;
     private Date endDate;
     private String performer;
-    private String activity;
+    private String activity; 
     
     public Report() {
     }

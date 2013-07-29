@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-    <session-factory>
+  <session-factory>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="hibernate.connection.datasource">java:comp/env/jdbc/enterpriseDS</property>        
-
+        <property name="hibernate.connection.datasource">java:comp/env/jdbc/registryDS</property> 
+        <property name="hibernate.connection.release_mode">after_transaction</property>
+        
         <!-- JNDI context for a datasource lookup -->
-        <property name="hibernate.jndi.class">bitronix.tm.jndi.BitronixInitialContextFactory</property>       
+        <!--<property name="hibernate.jndi.class">bitronix.tm.jndi.BitronixInitialContextFactory</property>-->       
 
         <!-- cache options -->
 <!--        <property name="hibernate.cache.provider_class">net.sf.ehcache.hibernate.EhCacheProvider</property>
@@ -49,6 +50,9 @@
         <property name="hibernate.generate_statistics">true</property>       
         
         <!-- mappings -->
-        <mapping class="enterprise.hibernate.Report" />
-    </session-factory>
+        <mapping class="registry.hibernate.Ops" />
+        <mapping class="registry.hibernate.RegistersId" />
+        <mapping class="registry.hibernate.Registers" />
+        <mapping class="registry.hibernate.Users" />
+  </session-factory>
 </hibernate-configuration>
