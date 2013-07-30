@@ -37,11 +37,11 @@
                         SessionFactory sf = null;
                         Session s = null;
                         try {
-                            final int LIMIT = 50;
+                            final int LIMIT = 50; 
                             sf = enterprise.hibernate.EnterpriseHibernateUtil.getSessionFactory();
                             s = sf.openSession();
                             Criteria criteria = s.createCriteria(Report.class);
-                            criteria.setCacheable(true);    
+                            // criteria.setCacheable(true);    
                             List<Report> l = criteria.setFetchSize(LIMIT).list();
                             for (Report r : l) {
                             %>

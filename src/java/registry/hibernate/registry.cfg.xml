@@ -2,57 +2,48 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="hibernate.connection.datasource">java:comp/env/jdbc/registryDS</property> 
-        <property name="hibernate.connection.release_mode">after_transaction</property>
-        
-        <!-- JNDI context for a datasource lookup -->
-        <!--<property name="hibernate.jndi.class">bitronix.tm.jndi.BitronixInitialContextFactory</property>-->       
-
-        <!-- cache options -->
-<!--        <property name="hibernate.cache.provider_class">net.sf.ehcache.hibernate.EhCacheProvider</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.datasource">java:comp/env/jdbc/registryDS</property>
+    <property name="hibernate.connection.release_mode">after_transaction</property>
+    <!-- JNDI context for a datasource lookup -->
+    <!--<property name="hibernate.jndi.class">bitronix.tm.jndi.BitronixInitialContextFactory</property>-->
+    <!-- cache options -->
+    <!--        <property name="hibernate.cache.provider_class">net.sf.ehcache.hibernate.EhCacheProvider</property>
         <property name="hibernate.cache.use_second_level_cache">true</property>
         <property name="hibernate.cache.use_query_cache">true</property>
         <property name="hibernate.cache.provider_configuration_file_resource_path">ehcache.xml</property>
         <property name="hibernate.cache.use_structured_entries">true</property>-->
-        <property name="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
-        
-        <!-- FIXME replace with JTA -->
-        <property name="hibernate.transaction.manager_lookup_class">enterprise.util.EnterpriseBTMTransactionManagerLookup</property>
-        <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</property>
-        <property name="hibernate.current_session_context_class">jta</property>
-        <property name="hibernate.transaction.auto_close_session">true</property>
-
-        <!-- using with Spring 
+    <property name="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+    <!-- FIXME replace with JTA -->
+    <property name="hibernate.transaction.manager_lookup_class">enterprise.util.EnterpriseBTMTransactionManagerLookup2</property>
+    <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</property>
+    <property name="hibernate.current_session_context_class">jta</property>
+    <property name="hibernate.transaction.auto_close_session">true</property>
+    <!-- using with Spring 
         <property name="hibernate.session_factory_name"></property> 
         -->
-
-        <!-- transaction options -->
-        <!-- 
+    <!-- transaction options -->
+    <!-- 
        <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</property>
        <property name="hibernate.transaction.manager_lookup_class">org.hibernate.transaction.TransationManagerLookupFactory</property>
         -->
-                
-        <!-- in Spring 
+    <!-- in Spring 
         <prop key="hibernate.cache.use_second_level_cache">true</prop>
         <prop key="hibernate.cache.use_query_cache">true</prop>
         <prop key="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.EhCacheRegionFactory</prop>
         -->
-                
-        <!-- FIXME
+    <!-- FIXME
         <property name="hibernate.connection.isolation"></property> 
         -->
-
-        <!-- common settings -->
-        <property name="hibernate.show_sql">true</property>
-        <property name="hibernate.format_sql">true</property>
-        <property name="hibernate.use_sql_comments">true</property>
-        <property name="hibernate.generate_statistics">true</property>       
-        
-        <!-- mappings -->
-        <mapping class="registry.hibernate.Ops" />
-        <mapping class="registry.hibernate.RegistersId" />
-        <mapping class="registry.hibernate.Registers" />
-        <mapping class="registry.hibernate.Users" />
+    <!-- common settings -->
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.format_sql">true</property>
+    <property name="hibernate.use_sql_comments">true</property>
+    <property name="hibernate.generate_statistics">true</property>
+    <!-- mappings -->
+    <mapping class="registry.hibernate.Ops"/>
+    <mapping class="registry.hibernate.RegistersId"/>
+    <mapping class="registry.hibernate.Registers"/>
+    <mapping class="registry.hibernate.Users"/>
   </session-factory>
 </hibernate-configuration>

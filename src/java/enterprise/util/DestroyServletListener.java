@@ -19,7 +19,7 @@ import net.sf.ehcache.CacheManager;
 public class DestroyServletListener implements ServletContextListener {
 
     private static final Logger LOG = Logger.getLogger(InitServlet.class.getName());
-    public static final String ENTERPRISE_DS = "java:comp/env/jdbc/enterpriseDS";
+    public static final String ENTERPRISE_DS = "java:comp/env/jdbc/enterpriseDS-C3P0";
     public static final String ENTERPRISE_CACHE_MANAGER = "enterpriseCacheManager";
 
     @Override
@@ -28,8 +28,8 @@ public class DestroyServletListener implements ServletContextListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        cleanupC3P0();
-        cleanupEhcache();
+//        cleanupC3P0();
+//        cleanupEhcache();
     }
 
     private void cleanupC3P0() {

@@ -10,8 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
+//import org.hibernate.annotations.Cache;
+//import org.hibernate.annotations.CacheConcurrencyStrategy;
 //import javax.persistence.Cacheable;
 
 /**
@@ -26,7 +26,7 @@ public class Report implements java.io.Serializable {
     private Date startDate;
     private Date endDate;
     private String performer;
-    private String activity; 
+    private String activity;
     
     public Report() {
     }

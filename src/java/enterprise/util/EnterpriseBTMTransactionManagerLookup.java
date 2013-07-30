@@ -5,12 +5,18 @@ import org.hibernate.HibernateException;
 import org.hibernate.transaction.BTMTransactionManagerLookup;
 
 /**
- *
+ * Patch for Hibernate 3.6.3 with Bitronix as a JTA provider
+ * 
  * @author the-ramones Paul Kulitski
  */
 public class EnterpriseBTMTransactionManagerLookup
         extends BTMTransactionManagerLookup {
-
+    
+    /*
+     * FIXME: Cannot find transaction manager BitronixTransactionManager neither
+     * under 'java:/TransactionManager' nor 'bitronix.tm.TransactionManagerServices'
+     * nor custom name alike 'btmTransactionManager' in the btm-props.properties
+     */
     @Override
     public String getUserTransactionName() {
         try {
@@ -31,8 +37,7 @@ public class EnterpriseBTMTransactionManagerLookup
             if (configuredJndiUserTransactionName != null 
                     && configuredJndiUserTransactionName.trim().length() >= 0) {
                 System.out.println(configuredJndiUserTransactionName + "!!!!!!!!!!!!");
-                return configuredJndiUserTransactionName;
-                
+                return configuredJndiUserTransactionName;                
             }
             return "java:comp/UserTransaction";
         } catch (Exception e) {

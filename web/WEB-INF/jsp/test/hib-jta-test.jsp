@@ -4,6 +4,7 @@
     Author     : the-ramones
 --%>
 
+<%@page import="java.util.Map"%>
 <%@page import="registry.hibernate.RegistersId"%>
 <%@page import="registry.hibernate.Registers"%>
 <%@page import="enterprise.hibernate.Report"%>
@@ -43,38 +44,14 @@
                 </tr>
             </thead>
             <tbody>
-                <%  UserTransaction ut = null;
-                    try {
-                        Context initialContext = new InitialContext();
-                        SessionFactory enterpriseSf = EnterpriseHibernateUtil.getSessionFactory();
-                        SessionFactory registrySf = RegistryHibernateUtil.getSessionFactory();
-                        ut = (UserTransaction) initialContext.lookup("java:comp/UserTransaction");
-                        Session enterpriseS = enterpriseSf.openSession();
-                        Session registryS = registrySf.openSession();
-                        
-                        ut.begin();
-                        
-                        Report report = new Report(Date.valueOf("2013-08-01"), Date.valueOf("2013-08-02"), "Michael Douglas", "acting");
-                        Registers registry = new Registers();
-                        registry.setId(new RegistersId(11, 1, 1));
-                        enterpriseS.save(report);
-                        registryS.save(registry);
-                        
-                        List enterpriseL = enterpriseS.createQuery("from Report").list();
-                        List registryL = registryS.createQuery("from Registers").list();
-                        
-                        request.setAttribute("modelEnterprise", enterpriseL);
-                        request.setAttribute("modelRegistry", registryL);
-                        
-                        ut.commit();
-                        } catch (Exception e) {
-                            System.err.println(e);
-                            try {
-                                ut.rollback();
-                            } catch (Exception roll) {
-                                System.err.println("Cannot rollback transaction: " + roll);
-                            }
-                        }
+                <% 
+                    Map<String, List> model = 
+                            (new enterprise.jsp.HibernateJtaController())
+                            .processRequest(
+                                (Session) request.getAttribute("enterpriseS"),
+                                (Session) request.getAttribute("registryS"));
+                    request.setAttribute("modelEnterprise", model.get("modelEnterprise"));
+                    request.setAttribute("modelRegistry", model.get("modelRegistry"));
                 %>
                 <c:forEach var="reports" items="${modelEnterprise}">
                     <tr>
@@ -85,8 +62,8 @@
                         <td>${reports.activity}</td>
                     </tr>
                 </c:forEach>
-                    <tr><td colspan="5"></td></tr>
-                <c:forEach var="registers" items="${modelRegistry}">
+                <tr><td colspan="5"></td></tr>
+                    <c:forEach var="registers" items="${modelRegistry}">
                     <tr>
                         <td>${registers.id}</td>
                         <td>${registers.users}</td>
@@ -95,7 +72,7 @@
                         <td></td>
                     </tr>
                 </c:forEach>                           
-                </tbody>
-            </table>
-        </body>
-    </html>
+            </tbody>
+        </table>
+    </body>
+</html>

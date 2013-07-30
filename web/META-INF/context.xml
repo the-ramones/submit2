@@ -2,15 +2,15 @@
 <Context antiJARLocking="true" path="/kulitski">
   
   <!-- C3P0 CombopPooledDataSource -->
-  <Resource auth="Container"
+<!--  <Resource auth="Container"
             description="Enterprise DS"
             driverClass="com.mysql.jdbc.Driver" 
             factory="org.apache.naming.factory.BeanFactory"
             jdbcUrl="jdbc:mysql://localhost:3306/enterprise?autoReconnect=true"
-            name="jdbc/enterpriseDS" 
+            name="jdbc/enterpriseDS-C3P0" 
             password="netbeans" 
             type="com.mchange.v2.c3p0.ComboPooledDataSource"
-            user="netbeans"/>
+            user="netbeans"/>-->
   
   <!-- Bitronix XAPooledDataSource -->
   <Resource auth="Container" 
