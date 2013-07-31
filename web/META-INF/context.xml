@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context antiJARLocking="true" path="/kulitski">
-  
+<Context antiJARLocking="true" path="/kulitski-spring-way">
   <!-- C3P0 CombopPooledDataSource -->
-<!--  <Resource auth="Container"
+  <!--  <Resource auth="Container"
             description="Enterprise DS"
             driverClass="com.mysql.jdbc.Driver" 
             factory="org.apache.naming.factory.BeanFactory"
@@ -11,18 +10,7 @@
             password="netbeans" 
             type="com.mchange.v2.c3p0.ComboPooledDataSource"
             user="netbeans"/>-->
-  
   <!-- Bitronix XAPooledDataSource -->
-  <Resource auth="Container" 
-            factory="bitronix.tm.resource.ResourceObjectFactory" 
-            name="jdbc/enterpriseDS" 
-            type="javax.sql.DataSource" 
-            uniqueName="jdbc/enterpriseDS"/>
-  
-  <Resource auth="Container" 
-            factory="bitronix.tm.resource.ResourceObjectFactory"
-            name="jdbc/registryDS" 
-            type="javax.sql.DataSource" 
-            uniqueName="jdbc/registryDS"/>
- 
+  <Resource auth="Container" factory="bitronix.tm.resource.ResourceObjectFactory" name="jdbc/enterpriseDS" type="javax.sql.DataSource" uniqueName="jdbc/enterpriseDS"/>
+  <Resource auth="Container" factory="bitronix.tm.resource.ResourceObjectFactory" name="jdbc/registryDS" type="javax.sql.DataSource" uniqueName="jdbc/registryDS"/>
 </Context>
