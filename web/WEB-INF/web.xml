@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <!-- Spring appication context file-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/applicationContext.xml</param-value>
+        <param-value>/WEB-INF/enterprise-context.xml</param-value>
     </context-param>
-    
+    <!-- @Configuration-annotated classes -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>enterprise.BitronixJtaConfig</param-value>
+    </context-param>
+    <!-- Spring's servlet context loader listener class -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-    <listener>
+
+    <!-- Configure ContextLoaderListener to use JavaConfigWebApplicationContext
+    instead of the default XmlWebApplicationContext -->
+    <!--<context-param>
+        <param-name>contextClass</param-name>
+        <param-value>org.springframework.config.java.JavaConfigAplicationContext</param-value>
+    </context-param>-->
+
+    <!--ehcache and C3P0 listeners-->
+    <!--<listener>
         <listener-class>enterprise.util.DestroyServletListener</listener-class>
-    </listener>
-    <!--   <listener>
+    </listener>-->
+    <!--    <listener>
         <listener-class>net.sf.ehcache.constructs.web.ShutdownListener</listener-class>
     </listener> -->
     
+    <!-- Test servlets -->
     <servlet>
         <servlet-name>jdbc-test</servlet-name>
         <jsp-file>/WEB-INF/jsp/test/jdbc-test.jsp</jsp-file>
@@ -35,20 +51,6 @@
         <servlet-name>btm-test</servlet-name>
         <jsp-file>/WEB-INF/jsp/test/btm-test.jsp</jsp-file>
     </servlet>
-    <servlet>
-        <servlet-name>initializer</servlet-name>
-        <servlet-class>enterprise.util.InitServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet>
-        <servlet-name>dispatcher</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <load-on-startup>2</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>dispatcher</servlet-name>
-        <url-pattern>*.htm</url-pattern>
-    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>hib-test</servlet-name>
         <url-pattern>/hib-test</url-pattern>
@@ -69,7 +71,20 @@
         <servlet-name>btm-test</servlet-name>
         <url-pattern>/btm-test</url-pattern>
     </servlet-mapping>
+    <!-- -->
     
+    <!-- Spring FrontController dispatcher servlet -->
+    <servlet>
+        <servlet-name>dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>*.htm</url-pattern>
+    </servlet-mapping>
+    <!-- -->
+       
     <session-config>
         <session-timeout>
             30
@@ -79,39 +94,15 @@
         <welcome-file>redirect.jsp</welcome-file>
     </welcome-file-list>
  
-    <resource-ref>
-        <description>
-            Recource reference to the Mysql 'registry' database
-        </description>
-        <res-ref-name>jdbc/registryDS</res-ref-name>
-        <res-type>javax.sql.DataSource</res-type>
-        <res-auth>Container</res-auth>
-    </resource-ref>
-    <resource-ref>
-        <description>
-            Recource reference to the Mysql 'enterprise' database
-        </description>
-        <res-ref-name>
-            jdbc/enterpriseDS
-        </res-ref-name>
-        <res-type>
-            javax.sql.DataSource
-        </res-type>
-        <res-auth>Container</res-auth>
-    </resource-ref>
-    
+    <!-- servlet's filters -->
     <filter>
         <filter-name>EnterpriseSessionRequestFilter</filter-name>
         <filter-class>enterprise.web.filter.EnterpriseSessionRequestFilter</filter-class>
     </filter>
-
     <filter-mapping>
         <filter-name>EnterpriseSessionRequestFilter</filter-name>
         <url-pattern>/hib-jta-test</url-pattern>
     </filter-mapping>
-    
-    <pre-destroy>
-        <lifecycle-callback-class>enterprise.util.PreDestroyCleaner</lifecycle-callback-class>
-        <lifecycle-callback-method>cleanupC3P0</lifecycle-callback-method>
-    </pre-destroy>
+    <!-- -->
+   
 </web-app>
