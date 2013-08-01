@@ -1,26 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-    <!-- Spring appication context file-->
+   
+    <!--Spring appication context file-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/enterprise-context.xml</param-value>
+        <param-value>
+            /WEB-INF/enterprise-context.xml 
+        </param-value>
     </context-param>
-    <!-- @Configuration-annotated classes -->
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>enterprise.BitronixJtaConfig</param-value>
-    </context-param>
-    <!-- Spring's servlet context loader listener class -->
+    <!--Spring's servlet context loader listener class--> 
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-
-    <!-- Configure ContextLoaderListener to use JavaConfigWebApplicationContext
-    instead of the default XmlWebApplicationContext -->
-    <!--<context-param>
-        <param-name>contextClass</param-name>
-        <param-value>org.springframework.config.java.JavaConfigAplicationContext</param-value>
-    </context-param>-->
 
     <!--ehcache and C3P0 listeners-->
     <!--<listener>
@@ -92,17 +83,5 @@
     </session-config>
     <welcome-file-list>
         <welcome-file>redirect.jsp</welcome-file>
-    </welcome-file-list>
- 
-    <!-- servlet's filters -->
-    <filter>
-        <filter-name>EnterpriseSessionRequestFilter</filter-name>
-        <filter-class>enterprise.web.filter.EnterpriseSessionRequestFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>EnterpriseSessionRequestFilter</filter-name>
-        <url-pattern>/hib-jta-test</url-pattern>
-    </filter-mapping>
-    <!-- -->
-   
+    </welcome-file-list> 
 </web-app>
