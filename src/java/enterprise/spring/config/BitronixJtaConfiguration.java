@@ -20,14 +20,22 @@ import javax.transaction.UserTransaction;
 import java.util.Properties;
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Configuration
 public class BitronixJtaConfiguration {
+
+    private static final Logger logger = 
+            LoggerFactory.getLogger(BitronixJtaConfiguration.class);
 
     private static final int MIN_POOL_SIZE = 4;
     private static final int MAX_POOL_SIZE = 32;
     private static final String TEST_QUERY_ENTERPRISE_DS = "SELECT 1 FROM reports";
     private static final String TEST_QUERY_REGISTRY_DS = "SELECT 1 FROM registers";
     public static final String SERVER_JVM_UNIQUE_ID = "tomcat-btm-node0";
+    public static final String ENTERPRISE_DRIVER_PROPERTIES = "enterpriseds-driver.properties";
+    public static final String REGISTRY_DRIVER_PROPERTIES = "registry-driver.properties";
     
     @Autowired
     private Environment environment;
@@ -43,9 +51,10 @@ public class BitronixJtaConfiguration {
         enterpriseDS.setTestQuery(TEST_QUERY_ENTERPRISE_DS);
         try {
             Properties props = new Properties();
-            props.load(getClass().getResourceAsStream("enterpriseds-driver.properties"));
+            props.load(getClass().getResourceAsStream(ENTERPRISE_DRIVER_PROPERTIES));
             enterpriseDS.setDriverProperties(props);
         } catch (IOException e) {
+            logger.error("Cannot load properties file for a datasource driver initialization", e);
         }
         return enterpriseDS;
     }
@@ -61,9 +70,10 @@ public class BitronixJtaConfiguration {
         registryDS.setTestQuery(TEST_QUERY_REGISTRY_DS);
         try {
             Properties props = new Properties();
-            props.load(getClass().getResourceAsStream("registry-driver.properties"));
+            props.load(getClass().getResourceAsStream(REGISTRY_DRIVER_PROPERTIES));
             registryDS.setDriverProperties(props);
         } catch (IOException e) {
+            logger.error("Cannot load properties file for a datasource driver initialization", e);
         }
         return registryDS;
     }
