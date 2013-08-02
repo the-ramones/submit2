@@ -36,17 +36,17 @@ public class BitronixJtaConfig {
 
     private static final Logger logger =
             LoggerFactory.getLogger(BitronixJtaConfig.class);
-    public static final String ENTERPRISE_DS_UNIQUE_NAME = "jdbc/enterpriseDS";
-    public static final String ENTERPRISEDS_DRIVER_PROPERTIES_FILE = "/enterpriseds-driver.properties";
-    public static final String REGISTRY_DS_UNIQUE_NAME = "jdbc/registryDS";
-    public static final String REGISTRYDS_DRIVER_PROPERTIES_FILE = "/registryds-driver.properties";
-    public static final String ENTERPRISE_HIBERNATE_CONFIG_FILE = "/enterprise/hibernate/enterprise.cfg.xml";
-    public static final String REGISTRY_HIBERNATE_CONFIG_FILE = "/registry/hibernate/registry.cfg.xml";
+    private static final String ENTERPRISE_DS_UNIQUE_NAME = "jdbc/enterpriseDS";
+    private static final String ENTERPRISEDS_DRIVER_PROPERTIES_FILE = "/enterpriseds-driver.properties";
+    private static final String REGISTRY_DS_UNIQUE_NAME = "jdbc/registryDS";
+    private static final String REGISTRYDS_DRIVER_PROPERTIES_FILE = "/registryds-driver.properties";
+    private static final String ENTERPRISE_HIBERNATE_CONFIG_FILE = "/enterprise/model/enterprise/enterprise.cfg.xml";
+    private static final String REGISTRY_HIBERNATE_CONFIG_FILE = "/enterprise/model/registry/registry.cfg.xml";
     private static final int MIN_POOL_SIZE = 4;
     private static final int MAX_POOL_SIZE = 32;
     private static final String TEST_QUERY_ENTERPRISE_DS = "SELECT 1 FROM reports";
     private static final String TEST_QUERY_REGISTRY_DS = "SELECT 1 FROM registers";
-    public static final String JTA_JVM_UNIQUE_ID = "spring-btm-node0";
+    private static final String JTA_JVM_UNIQUE_ID = "spring-btm-node0";
 
     public BitronixJtaConfig() {
     }

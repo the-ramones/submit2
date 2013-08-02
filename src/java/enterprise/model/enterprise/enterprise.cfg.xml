@@ -24,6 +24,6 @@
         <property name="hibernate.generate_statistics">true</property>
         <property name="hibernate.hibernate.default_batch_fetch_size">16</property>    
         <!-- mappings -->
-        <mapping class="enterprise.hibernate.Report"/>
+        <mapping class="enterprise.model.enterprise.Report"/>
     </session-factory>
 </hibernate-configuration>

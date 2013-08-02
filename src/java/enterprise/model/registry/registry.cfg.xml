@@ -24,9 +24,9 @@
         <property name="hibernate.generate_statistics">true</property>
         <property name="hibernate.hibernate.default_batch_fetch_size">16</property>
         <!-- mappings -->
-        <mapping class="registry.hibernate.Op"/>
-        <mapping class="registry.hibernate.RegisterId"/>
-        <mapping class="registry.hibernate.Register"/>
-        <mapping class="registry.hibernate.User"/>
+        <mapping class="enterprise.model.registry.Op"/>
+        <mapping class="enterprise.model.registry.RegisterId"/>
+        <mapping class="enterprise.model.registry.Register"/>
+        <mapping class="enterprise.model.registry.User"/>
     </session-factory>
 </hibernate-configuration>
