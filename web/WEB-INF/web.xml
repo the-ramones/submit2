@@ -42,6 +42,10 @@
         <servlet-name>btm-test</servlet-name>
         <jsp-file>/WEB-INF/jsp/test/btm-test.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>ds-test</servlet-name>
+        <jsp-file>/WEB-INF/jsp/test/ds-test.jsp</jsp-file>
+    </servlet>
     <servlet-mapping>
         <servlet-name>hib-test</servlet-name>
         <url-pattern>/hib-test</url-pattern>
@@ -61,6 +65,10 @@
     <servlet-mapping>
         <servlet-name>btm-test</servlet-name>
         <url-pattern>/btm-test</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ds-test</servlet-name>
+        <url-pattern>/ds-test</url-pattern>
     </servlet-mapping>
     <!-- -->
     

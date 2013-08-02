@@ -5,8 +5,8 @@
          monitoring="off" 
          dynamicConfig="false"
          maxBytesLocalHeap="128M"
-         maxBytesLocalOffHeap="512M"
-         maxBytesLocalDisk="1G"    
+         maxBytesLocalOffHeap="256M"
+         maxBytesLocalDisk="512M"    
          name="enterpriseCacheManager">
     
     <diskStore path="java.io.tmpdir" />
@@ -23,8 +23,8 @@
     <!-- entity caches -->
     <cache name="enterprise.hibernate.Report"
            maxBytesLocalHeap="64M"
-           maxBytesLocalOffHeap="256M"
-           maxBytesLocalDisk="512M"
+           maxBytesLocalOffHeap="128M"
+           maxBytesLocalDisk="368M"
            eternal="true"
            diskSpoolBufferSizeMB="32"
            timeToIdleSeconds="0"
@@ -32,12 +32,13 @@
            memoryStoreEvictionPolicy="LFU">
         <persistence strategy="localTempSwap" synchronousWrites="false"/>
     </cache>
+    <!-- use "localRestartable" in BigMemory Go (for fast recovery of cache) -->
     
     <!-- hibernate query caches -->
     <cache name="org.hibernate.cache.StandardQueryCache"
-           maxBytesLocalHeap="32M"
-           maxBytesLocalOffHeap="128M"
-           maxBytesLocalDisk="256M"
+           maxBytesLocalHeap="48M"
+           maxBytesLocalOffHeap="80M"
+           maxBytesLocalDisk="144M"
            eternal="false" 
            timeToIdleSeconds="3600"
            timeToLiveSeconds="3600"
@@ -47,8 +48,8 @@
 
     <!-- for hibernate first-level cache -->
     <cache name="org.hibernate.cache.UpdateTimestampsCache"
-           maxBytesLocalHeap="32M"
-           maxBytesLocalOffHeap="128M"
+           maxBytesLocalHeap="16M"
+           maxBytesLocalOffHeap="48M"
            overflowToOffHeap="true"
            eternal="true">
     </cache>

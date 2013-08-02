@@ -1,4 +1,4 @@
-package enterprise.hibernate;
+package enterprise.model.enterprise;
 
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;

@@ -1,4 +1,4 @@
-package registry.hibernate;
+package enterprise.model.registry;
 
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
@@ -7,13 +7,13 @@ import org.hibernate.SessionFactory;
  * Hibernate Utility class with a convenient method to get Session Factory
  * object.
  *
- * @author Kulitski Paul
+ * @author Paul Kulitski
  */
 public class RegistryHibernateUtil {
 
     private static final SessionFactory sessionFactory;
     private static final String REGISTRY_HIBERNATE_CONFIGIRATION = "/registry/hibernate/registry.cfg.xml";
-    
+
     static {
         try {
             // Create the SessionFactory from standard (hibernate.cfg.xml) 
@@ -25,7 +25,7 @@ public class RegistryHibernateUtil {
             throw new ExceptionInInitializerError(ex);
         }
     }
-    
+
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }

@@ -12,7 +12,6 @@ import bitronix.tm.resource.jdbc.PoolingDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.transaction.jta.JtaTransactionManager;
 import org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean;
@@ -21,32 +20,45 @@ import javax.transaction.TransactionManager;
 import javax.transaction.UserTransaction;
 import java.util.Properties;
 import java.io.IOException;
+import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
+@EnableTransactionManagement
 public class BitronixJtaConfig {
+    
+    @Inject
+    private Environment environment;
 
-    public BitronixJtaConfig() {
-    }
     private static final Logger logger =
             LoggerFactory.getLogger(BitronixJtaConfig.class);
+    public static final String ENTERPRISE_DS_UNIQUE_NAME = "jdbc/enterpriseDS";
+    public static final String ENTERPRISEDS_DRIVER_PROPERTIES_FILE = "/enterpriseds-driver.properties";
+    public static final String REGISTRY_DS_UNIQUE_NAME = "jdbc/registryDS";
+    public static final String REGISTRYDS_DRIVER_PROPERTIES_FILE = "/registryds-driver.properties";
+    public static final String ENTERPRISE_HIBERNATE_CONFIG_FILE = "/enterprise/hibernate/enterprise.cfg.xml";
+    public static final String REGISTRY_HIBERNATE_CONFIG_FILE = "/registry/hibernate/registry.cfg.xml";
     private static final int MIN_POOL_SIZE = 4;
     private static final int MAX_POOL_SIZE = 32;
     private static final String TEST_QUERY_ENTERPRISE_DS = "SELECT 1 FROM reports";
     private static final String TEST_QUERY_REGISTRY_DS = "SELECT 1 FROM registers";
     public static final String JTA_JVM_UNIQUE_ID = "spring-btm-node0";
+
+    public BitronixJtaConfig() {
+    }
+
     //@Autowired
     //private Environment environment;
-
     @Bean(initMethod = "init", destroyMethod = "close")
     public PoolingDataSource enterpriseDataSource() {
         PoolingDataSource enterpriseDS = new PoolingDataSource();
         enterpriseDS.setClassName(
                 com.mysql.jdbc.jdbc2.optional.MysqlXADataSource.class.getName());
-        enterpriseDS.setUniqueName("jdbc/enterpriseDS");
+        enterpriseDS.setUniqueName(ENTERPRISE_DS_UNIQUE_NAME);
         enterpriseDS.setMinPoolSize(MIN_POOL_SIZE);
         enterpriseDS.setMaxPoolSize(MAX_POOL_SIZE);
         enterpriseDS.setTestQuery(TEST_QUERY_ENTERPRISE_DS);
@@ -59,7 +71,7 @@ public class BitronixJtaConfig {
                      * getClass().getResourceAsStream("/enterpriseds-driver.properties")
                      */
                     Thread.currentThread().getContextClassLoader()
-                    .getResourceAsStream("/enterpriseds-driver.properties"));
+                    .getResourceAsStream(ENTERPRISEDS_DRIVER_PROPERTIES_FILE));
             enterpriseDS.setDriverProperties(props);
             enterpriseDS.init();
         } catch (IOException e) {
@@ -73,7 +85,7 @@ public class BitronixJtaConfig {
         PoolingDataSource registryDS = new PoolingDataSource();
         registryDS.setClassName(
                 com.mysql.jdbc.jdbc2.optional.MysqlXADataSource.class.getName());
-        registryDS.setUniqueName("jdbc/registryDS");
+        registryDS.setUniqueName(REGISTRY_DS_UNIQUE_NAME);
         registryDS.setMinPoolSize(MIN_POOL_SIZE);
         registryDS.setMaxPoolSize(MAX_POOL_SIZE);
         registryDS.setTestQuery(TEST_QUERY_REGISTRY_DS);
@@ -81,7 +93,7 @@ public class BitronixJtaConfig {
             Properties props = new Properties();
             props.load(
                     Thread.currentThread().getContextClassLoader()
-                    .getResourceAsStream("/registryds-driver.properties"));
+                    .getResourceAsStream(REGISTRYDS_DRIVER_PROPERTIES_FILE));
             registryDS.setDriverProperties(props);
         } catch (IOException e) {
             logger.error("Cannot load properties file for a datasource driver initialization", e);
@@ -132,7 +144,7 @@ public class BitronixJtaConfig {
         AnnotationSessionFactoryBean esf = new AnnotationSessionFactoryBean();
         esf.setDataSource(enterpriseDataSource());
         esf.setJtaTransactionManager(transactionManager());
-        esf.setConfigLocation(new ClassPathResource("/enterprise/hibernate/enterprise.cfg.xml"));
+        esf.setConfigLocation(new ClassPathResource(ENTERPRISE_HIBERNATE_CONFIG_FILE));
         return esf;
     }
 
@@ -142,15 +154,7 @@ public class BitronixJtaConfig {
         AnnotationSessionFactoryBean rsf = new AnnotationSessionFactoryBean();
         rsf.setDataSource(registryDataSource());
         rsf.setJtaTransactionManager(transactionManager());
-        rsf.setConfigLocation(new ClassPathResource("/registry/hibernate/registry.cfg.xml"));
+        rsf.setConfigLocation(new ClassPathResource(REGISTRY_HIBERNATE_CONFIG_FILE));
         return rsf;
     }
-    /*
-     * istead of
-     * hibernate.transaction.manager_lookup_class=BTMTransactionManagerLookup
-     * hibernate.current_session_context_class=jta
-     * Spring automatically register its own hooks:
-     * hibernate.transaction.factory_class=org.springframework.orm.hibernate3.SpringTransactionFactory
-     * hibernate.current_session_context_class=org.springframework.orm.hibernate3.SpringSessionContext
-     */
 }

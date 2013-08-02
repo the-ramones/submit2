@@ -1,4 +1,4 @@
-package enterprise.hibernate;
+package enterprise.model.enterprise;
 // Generated Jul 14, 2013 6:56:46 PM by Hibernate Tools 3.2.1.GA
 
 import java.util.Date;

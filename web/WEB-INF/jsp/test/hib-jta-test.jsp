@@ -5,8 +5,8 @@
 --%>
 
 <%@page import="java.util.Map"%>
-<%@page import="registry.hibernate.RegistersId"%>
-<%@page import="registry.hibernate.Registers"%>
+<%@page import="registry.hibernate.RegisterId"%>
+<%@page import="registry.hibernate.Register"%>
 <%@page import="enterprise.hibernate.Report"%>
 <%@page import="java.util.List"%>
 <%@page import="org.hibernate.Session"%>
@@ -66,8 +66,8 @@
                     <c:forEach var="registers" items="${modelRegistry}">
                     <tr>
                         <td>${registers.id}</td>
-                        <td>${registers.users}</td>
-                        <td>${registers.ops}</td>
+                        <td>${registers.user}</td>
+                        <td>${registers.op}</td>
                         <td>${registers.recordTime}</td>
                         <td></td>
                     </tr>
