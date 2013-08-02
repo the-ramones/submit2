@@ -22,6 +22,8 @@ import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean;
 
 @Configuration
 public class BitronixJtaConfiguration {
@@ -114,5 +116,34 @@ public class BitronixJtaConfiguration {
         tm.setUserTransaction(bitronixTransactionManager());
         return tm;
     }
+    
+    
+    @Bean
+    @DependsOn("enterpriseDataSource")
+    public AnnotationSessionFactoryBean enterpriseSessionFactory() {
+        AnnotationSessionFactoryBean esf = new AnnotationSessionFactoryBean();
+        esf.setDataSource(enterpriseDataSource());
+        esf.setJtaTransactionManager(transactionManager());
+        esf.setConfigLocation(new ClassPathResource("/enterprise/hibernate/enterprise.cfg.xml"));
+        return esf;
+    }
 
+    @Bean
+    @DependsOn("registryDataSource")
+    public AnnotationSessionFactoryBean registrySessionFactory() {
+        AnnotationSessionFactoryBean rsf = new AnnotationSessionFactoryBean();
+        rsf.setDataSource(registryDataSource());
+        rsf.setJtaTransactionManager(transactionManager());
+        rsf.setConfigLocation(new ClassPathResource("/registry/hibernate/registry.cfg.xml"));
+        return rsf;
+    }
+    
+    /*
+     * istead of
+     * hibernate.transaction.manager_lookup_class=BTMTransactionManagerLookup
+     * hibernate.current_session_context_class=jta
+     * Spring automatically register its own hooks:
+     * hibernate.transaction.factory_class=org.springframework.orm.hibernate3.SpringTransactionFactory
+     * hibernate.current_session_context_class=org.springframework.orm.hibernate3.SpringSessionContext
+     */
 }

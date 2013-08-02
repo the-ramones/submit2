@@ -31,9 +31,8 @@ public class BitronixJtaConfig {
 
     public BitronixJtaConfig() {
     }
-
     private static final Logger logger =
-            LoggerFactory.getLogger(BitronixJtaConfig.class); 
+            LoggerFactory.getLogger(BitronixJtaConfig.class);
     private static final int MIN_POOL_SIZE = 4;
     private static final int MAX_POOL_SIZE = 32;
     private static final String TEST_QUERY_ENTERPRISE_DS = "SELECT 1 FROM reports";
@@ -53,8 +52,16 @@ public class BitronixJtaConfig {
         enterpriseDS.setTestQuery(TEST_QUERY_ENTERPRISE_DS);
         try {
             Properties props = new Properties();
-            props.load(getClass().getResourceAsStream("enterpriseds-driver.properties"));
+            props.load(
+                    /* 
+                     * Classloader issue in Tomcat and likely another containers.
+                     * Use the code snippet below instead of this:
+                     * getClass().getResourceAsStream("/enterpriseds-driver.properties")
+                     */
+                    Thread.currentThread().getContextClassLoader()
+                    .getResourceAsStream("/enterpriseds-driver.properties"));
             enterpriseDS.setDriverProperties(props);
+            enterpriseDS.init();
         } catch (IOException e) {
             logger.error("Cannot load properties file for a datasource driver initialization", e);
         }
@@ -72,7 +79,9 @@ public class BitronixJtaConfig {
         registryDS.setTestQuery(TEST_QUERY_REGISTRY_DS);
         try {
             Properties props = new Properties();
-            props.load(getClass().getResourceAsStream("registry-driver.properties"));
+            props.load(
+                    Thread.currentThread().getContextClassLoader()
+                    .getResourceAsStream("/registryds-driver.properties"));
             registryDS.setDriverProperties(props);
         } catch (IOException e) {
             logger.error("Cannot load properties file for a datasource driver initialization", e);
@@ -136,7 +145,6 @@ public class BitronixJtaConfig {
         rsf.setConfigLocation(new ClassPathResource("/registry/hibernate/registry.cfg.xml"));
         return rsf;
     }
-    
     /*
      * istead of
      * hibernate.transaction.manager_lookup_class=BTMTransactionManagerLookup
