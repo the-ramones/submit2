@@ -3,16 +3,14 @@
 <hibernate-configuration>
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-    <property name="hibernate.connection.datasource">java:comp/env/jdbc/registryDS</property>
-    <property name="hibernate.connection.release_mode">after_transaction</property>
-    <!-- JNDI context for a datasource lookup -->
-    <!--<property name="hibernate.jndi.class">bitronix.tm.jndi.BitronixInitialContextFactory</property>-->
+    <!--<property name="hibernate.connection.release_mode">after_transaction</property>-->
     <!-- cache options -->
-    <!--        <property name="hibernate.cache.provider_class">net.sf.ehcache.hibernate.EhCacheProvider</property>
+    <!--<property name="hibernate.cache.provider_class">net.sf.ehcache.hibernate.EhCacheProvider</property>
         <property name="hibernate.cache.use_second_level_cache">true</property>
         <property name="hibernate.cache.use_query_cache">true</property>
         <property name="hibernate.cache.provider_configuration_file_resource_path">ehcache.xml</property>
-        <property name="hibernate.cache.use_structured_entries">true</property>-->
+        <property name="hibernate.cache.use_structured_entries">true</property>
+    -->
     <property name="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
     <!-- FIXME replace with JTA -->
     <property name="hibernate.transaction.manager_lookup_class">enterprise.util.EnterpriseBTMTransactionManagerLookup2</property>

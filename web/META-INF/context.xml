@@ -1,16 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context antiJARLocking="true" path="/kulitski-spring-way">
-  <!-- C3P0 CombopPooledDataSource -->
-  <!--  <Resource auth="Container"
-            description="Enterprise DS"
-            driverClass="com.mysql.jdbc.Driver" 
-            factory="org.apache.naming.factory.BeanFactory"
-            jdbcUrl="jdbc:mysql://localhost:3306/enterprise?autoReconnect=true"
-            name="jdbc/enterpriseDS-C3P0" 
-            password="netbeans" 
-            type="com.mchange.v2.c3p0.ComboPooledDataSource"
-            user="netbeans"/>-->
-  <!-- Bitronix XAPooledDataSource -->
-  <Resource auth="Container" factory="bitronix.tm.resource.ResourceObjectFactory" name="jdbc/enterpriseDS" type="javax.sql.DataSource" uniqueName="jdbc/enterpriseDS"/>
-  <Resource auth="Container" factory="bitronix.tm.resource.ResourceObjectFactory" name="jdbc/registryDS" type="javax.sql.DataSource" uniqueName="jdbc/registryDS"/>
 </Context>
