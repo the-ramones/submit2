@@ -4,16 +4,17 @@
     <session-factory>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
         <!-- cache options -->
-        <!--
-            <property name="hibernate.cache.provider_class">net.sf.ehcache.hibernate.EhCacheProvider</property>
-            <property name="hibernate.cache.use_second_level_cache">true</property>
-            <property name="hibernate.cache.use_query_cache">true</property>
-            <property name="hibernate.cache.provider_configuration_file_resource_path">ehcache-registry.xml</property>
-            <property name="hibernate.cache.use_structured_entries">true</property>
-            <property name="hibernate.cache.use_minimal_puts">false</property>
-            <property name="hibernate.cache.region_prefix">enterprise.model.registry</property>
-        -->
-        <property name="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+        <property name="hibernate.cache.region.factory_class">
+            net.sf.ehcache.hibernate.EhCacheRegionFactory
+        </property>
+        <!--<property name="hibernate.cache.provider_class">net.sf.ehcache.hibernate.EhCacheProvider</property>-->
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <property name="hibernate.cache.use_query_cache">true</property>
+        <property name="net.sf.ehcache.configurationResourceName">/ehcache-registry.xml</property>
+        <property name="hibernate.cache.use_structured_entries">true</property>
+        <property name="hibernate.cache.use_minimal_puts">false</property>
+
+        <!--<property name="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</property>-->
         <!-- transaction options -->
         <property name="hibernate.transaction.auto_close_session">true</property>
         <property name="hibernate.transaction.flush_before_completion">true</property>

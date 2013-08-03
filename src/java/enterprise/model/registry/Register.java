@@ -45,11 +45,11 @@ public class Register implements java.io.Serializable {
     @EmbeddedId
     @AttributeOverrides({
         @AttributeOverride(name = "id", column =
-                @Column(name = "id", nullable = false)),
+        @Column(name = "id", nullable = false)),
         @AttributeOverride(name = "userId", column =
-                @Column(name = "user_id", nullable = false)),
+        @Column(name = "user_id", nullable = false)),
         @AttributeOverride(name = "opId", column =
-                @Column(name = "op_id", nullable = false))})
+        @Column(name = "op_id", nullable = false))})
     public RegisterId getId() {
         return this.id;
     }
@@ -86,5 +86,39 @@ public class Register implements java.io.Serializable {
 
     public void setRecordTime(Date recordTime) {
         this.recordTime = recordTime;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 71 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 71 * hash + (this.user != null ? this.user.hashCode() : 0);
+        hash = 71 * hash + (this.op != null ? this.op.hashCode() : 0);
+        hash = 71 * hash + (this.recordTime != null ? this.recordTime.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Register other = (Register) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        if (this.user != other.user && (this.user == null || !this.user.equals(other.user))) {
+            return false;
+        }
+        if (this.op != other.op && (this.op == null || !this.op.equals(other.op))) {
+            return false;
+        }
+        if (this.recordTime != other.recordTime && (this.recordTime == null || !this.recordTime.equals(other.recordTime))) {
+            return false;
+        }
+        return true;
     }
 }

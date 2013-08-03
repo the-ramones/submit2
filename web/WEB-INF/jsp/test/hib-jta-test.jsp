@@ -5,16 +5,16 @@
 --%>
 
 <%@page import="java.util.Map"%>
-<%@page import="registry.hibernate.RegisterId"%>
-<%@page import="registry.hibernate.Register"%>
-<%@page import="enterprise.hibernate.Report"%>
+<%@page import="enterprise.model.registry.RegisterId"%>
+<%@page import="enterprise.model.registry.Register"%>
+<%@page import="enterprise.model.enterprise.Report"%>
 <%@page import="java.util.List"%>
 <%@page import="org.hibernate.Session"%>
 <%@page import="javax.naming.Context"%>
 <%@page import="javax.naming.Context"%>
-<%@page import="registry.hibernate.RegistryHibernateUtil"%>
+<%@page import="enterprise.model.registry.RegistryHibernateUtil"%>
 <%@page import="org.hibernate.SessionFactory"%>
-<%@page import="enterprise.hibernate.EnterpriseHibernateUtil"%>
+<%@page import="enterprise.model.enterprise.EnterpriseHibernateUtil"%>
 <%@page import="javax.naming.InitialContext"%>
 <%@page import="javax.sql.DataSource"%>
 <%@page import="javax.transaction.UserTransaction"%>
@@ -45,13 +45,13 @@
             </thead>
             <tbody>
                 <% 
-                    Map<String, List> model = 
-                            (new enterprise.jsp.HibernateJtaController())
-                            .processRequest(
-                                (Session) request.getAttribute("enterpriseS"),
-                                (Session) request.getAttribute("registryS"));
-                    request.setAttribute("modelEnterprise", model.get("modelEnterprise"));
-                    request.setAttribute("modelRegistry", model.get("modelRegistry"));
+//                   Map<String, List> model = 
+//                            (new enterprise.jsp.HibernateJtaController())
+//                            .processRequest(
+//                                (Session) request.getAttribute("enterpriseS"),
+//                                (Session) request.getAttribute("registryS"));
+//                    request.setAttribute("modelEnterprise", model.get("modelEnterprise"));
+//                    request.setAttribute("modelRegistry", model.get("modelRegistry"));
                 %>
                 <c:forEach var="reports" items="${modelEnterprise}">
                     <tr>

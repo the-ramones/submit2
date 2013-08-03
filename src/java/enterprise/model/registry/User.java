@@ -75,4 +75,38 @@ public class User implements java.io.Serializable {
     public void setRegisters(Set<Register> registerses) {
         this.registers = registerses;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 11 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 11 * hash + (this.fullname != null ? this.fullname.hashCode() : 0);
+        hash = 11 * hash + (this.job != null ? this.job.hashCode() : 0);
+        hash = 11 * hash + (this.registers != null ? this.registers.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final User other = (User) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        if ((this.fullname == null) ? (other.fullname != null) : !this.fullname.equals(other.fullname)) {
+            return false;
+        }
+        if ((this.job == null) ? (other.job != null) : !this.job.equals(other.job)) {
+            return false;
+        }
+        if (this.registers != other.registers && (this.registers == null || !this.registers.equals(other.registers))) {
+            return false;
+        }
+        return true;
+    }
 }

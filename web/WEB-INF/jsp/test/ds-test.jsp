@@ -4,6 +4,8 @@
     Author     : the-ramones
 --%>
 
+<%@page import="javax.transaction.TransactionManager"%>
+<%@page import="javax.naming.InitialContext"%>
 <%@page import="org.slf4j.LoggerFactory"%>
 <%@page import="org.slf4j.Logger"%>
 <%@page import="java.sql.Connection"%>

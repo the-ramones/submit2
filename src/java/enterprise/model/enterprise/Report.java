@@ -92,4 +92,43 @@ public class Report implements java.io.Serializable {
     public void setActivity(String activity) {
         this.activity = activity;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 79 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 79 * hash + (this.startDate != null ? this.startDate.hashCode() : 0);
+        hash = 79 * hash + (this.endDate != null ? this.endDate.hashCode() : 0);
+        hash = 79 * hash + (this.performer != null ? this.performer.hashCode() : 0);
+        hash = 79 * hash + (this.activity != null ? this.activity.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Report other = (Report) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        if (this.startDate != other.startDate && (this.startDate == null || !this.startDate.equals(other.startDate))) {
+            return false;
+        }
+        if (this.endDate != other.endDate && (this.endDate == null || !this.endDate.equals(other.endDate))) {
+            return false;
+        }
+        if ((this.performer == null) ? (other.performer != null) : !this.performer.equals(other.performer)) {
+            return false;
+        }
+        if ((this.activity == null) ? (other.activity != null) : !this.activity.equals(other.activity)) {
+            return false;
+        }
+        return true;
+    }
+    
 }

@@ -7,7 +7,7 @@
 <%@page import="org.hibernate.HibernateException"%>
 <%@page import="java.util.List"%>
 <%@page import="org.hibernate.Criteria"%>
-<%@page import="enterprise.hibernate.Report"%>
+<%@page import="enterprise.model.enterprise.Report"%>
 <%@page import="org.hibernate.Criteria"%>
 <%@page import="org.hibernate.Session"%>
 <%@page import="org.hibernate.SessionFactory"%>
@@ -38,7 +38,7 @@
                         Session s = null;
                         try {
                             final int LIMIT = 50;
-                            sf = enterprise.hibernate.EnterpriseHibernateUtil.getSessionFactory();
+                            sf = enterprise.model.enterprise.EnterpriseHibernateUtil.getSessionFactory();
                             s = sf.openSession();
                             Criteria criteria = s.createCriteria(Report.class);
                             List<Report> l = criteria.setFetchSize(LIMIT).list();

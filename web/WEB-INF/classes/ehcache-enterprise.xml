@@ -9,7 +9,7 @@
          maxBytesLocalDisk="512M"    
          name="enterpriseCacheManager">
     
-    <diskStore path="java.io.tmpdir" />
+    <diskStore path="user.home/ehcache/enterprise-diskstore" />
     
     <defaultCache
         maxElementsInMemory="10000"     
@@ -29,7 +29,9 @@
            diskSpoolBufferSizeMB="32"
            timeToIdleSeconds="0"
            timeToLiveSeconds="0"
-           memoryStoreEvictionPolicy="LFU">
+           memoryStoreEvictionPolicy="LFU"
+           transactionalMode="xa"
+    >
         <persistence strategy="localTempSwap" synchronousWrites="false"/>
     </cache>
     <!-- use "localRestartable" in BigMemory Go (for fast recovery of cache) -->
@@ -53,5 +55,9 @@
            overflowToOffHeap="true"
            eternal="true">
     </cache>
+    
+    <transactionManagerLookup
+        class= "net.sf.ehcache.transaction.manager.DefaultTransactionManagerLookup"
+        properties="" propertySeparator=":"/>
 
 </ehcache>

@@ -9,7 +9,7 @@
          maxBytesLocalDisk="512M"    
          name="registryCacheManager">
     
-    <diskStore path="java.io.tmpdir" />
+    <diskStore path="user.home/ehcache/registry_diskstore" />
     
     <defaultCache
         maxElementsInMemory="10000"     
@@ -29,7 +29,9 @@
            diskSpoolBufferSizeMB="16"
            timeToIdleSeconds="0"
            timeToLiveSeconds="0"
-           memoryStoreEvictionPolicy="LFU">
+           memoryStoreEvictionPolicy="LFU"
+           transactionalMode="xa"
+    >
         <persistence strategy="localTempSwap" synchronousWrites="false"/>
     </cache>
     
@@ -77,5 +79,9 @@
            overflowToOffHeap="true"
            eternal="true">
     </cache>
+
+    <transactionManagerLookup
+        class= "net.sf.ehcache.transaction.manager.DefaultTransactionManagerLookup"
+        properties="" propertySeparator=":"/>
 
 </ehcache>
