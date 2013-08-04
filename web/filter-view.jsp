@@ -3,7 +3,7 @@
     Created on : Nov 23, 2012, 1:36:49 AM
     Author     : the-ramones
 --%>
-
+<%@page isThreadSafe="true" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,6 +13,17 @@
         <title>Filter application</title>
     </head>
     <body>
+        <% // default object available from JSp context
+            application.toString();
+            config.toString();
+            exception.toString();
+            out.flush();
+            page.toString(); // this is an instance of a servlet processing given JSP page
+            pageContext.toString();  // very useful interface
+            request.toString();
+            response.toString();
+            session.isNew();
+        %>
         <h3>Servlet-vs-Filters</h3>
         <h4>Choose action:</h4>
         <form method="GET" action="./controller">     

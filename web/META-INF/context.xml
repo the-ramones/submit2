@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context antiJARLocking="true" path="/lazy">
     
-    <Resource name="bean/CompanyControllerFactory" 
-              auth="Container"
-              type="dao.controller.CompanyController"
-              factory="org.apache.naming.factory.BeanFactory"
-              bar="23" />
+    <!-- Apache container configuration -->
     
+    <!-- EJB (doesn't work) -->
+    <Resource name="bean/CompanyEnterpriseBeanFactory" 
+              auth="Container"
+              type="dao.controller.CompanyEnterpriceBean"
+              factory="org.apache.naming.factory.EjbFactory" />
+    
+    <!-- POJO-style bean -->
+    <Resource name="bean/ProcessBeanFactory"
+              auth="Container"
+              type="dao.bean.ProcessBean"
+              factory="org.apache.naming.factory.BeanFactory" />
+    
+    <!-- Apache DBCP registry -->
+    <Resource name="jdbc/lazy-dbcp"
+              auth="Container"
+              type="javax.sql.DataSource"
+              maxActive="10" 
+              maxIdle="30"
+              maxWait="100"
+              username="root"
+              password="secret"
+              driver="com.mysql.jdbc.Driver"
+              url="jdbc:mysql://localhost:3306/lazy" />
+        
 </Context>

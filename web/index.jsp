@@ -40,9 +40,17 @@
             <label>Redirect to "Test session approaches":</label>
             <input type="submit" value="Redirect" name="submit" />
         </form>
-        <form method="GET" action="./jndi">
-            <label>Launch JNDI test</label>
-            <input type="submit" name="submit" value="JNDI test"
+        <form method="POST" action="./index-flow">
+            <label>Launch Enterprise JavaBeans JNDI test:</label>
+            <input type="submit" name="submit" value="EJB test" />
+        </form>
+        <form method="POST" action="./index-flow">
+            <label>Launch Java Bean JNDI test:</label>
+            <input type="submit" name="submit" value="Bean test" />
+        </form>
+        <form method="POST" action="./custom-dbcp">
+            <label>Launch Apache DBCP test:</label>
+            <input type="submit" value="dbcp test" name="submit" />
         </form>
     </body>
 </html>

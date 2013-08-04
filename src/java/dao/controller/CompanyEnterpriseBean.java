@@ -13,19 +13,16 @@ import lazy.domain.Customer;
 import lazy.domain.Supplier;
 
 /**
- * Controller code EJB3 test-controller
- *
- * @Stateless managed bean, controller
+ * Enterprise Java Bean.
  * @author the-ramones
  */
 @Stateless
-/**
- * @TransactionManagement(value=TransactionManagementType.CONTAINER) Maybe, when
- * we use CMT
- */
-public class CompanyController {
+public class CompanyEnterpriseBean {
 
-    private String test = "Test property";
+    public CompanyEnterpriseBean() {
+    }
+    
+    private String test = "Enterprise Company Bean";
 
     public String getTest() {
         return test;
@@ -34,8 +31,7 @@ public class CompanyController {
     public void setTest(String test) {
         this.test = test;
     }
-    
-    private Integer index = 2;
+    private Integer index = 995;
 
     public Integer getIndex() {
         return index;
@@ -44,6 +40,7 @@ public class CompanyController {
     public void setIndex(Integer index) {
         this.index = index;
     }
+    
     @PersistenceContext
     private EntityManager em;
     @EJB
@@ -63,20 +60,15 @@ public class CompanyController {
     }
     /**
      * Or in ejb-jar.xml something like this (vs Annotations)
-     * 
-     <enterprise-beans>
-     <session>
-     <display-name>A Credit-Service Bean</display-name>
-     <ejb-name>CreditService</ejb-name>
-     <home>creditService.ejb.CreditServiceHome</home>
-     <remote>creditService.ejb.CreditServiceRemote</remote>
-     <ejb-class>creditService.ejb.CreditServiceBean</ejb-class>
-     <session-type>Stateless</session-type>
-     <transaction-type>Container</transaction-type>
-     ...
-     </session>
-     ...
-     </enterprise-beans>
-     * 
+     *
+     * <enterprise-beans> <session> <display-name>A Credit-Service
+     * Bean</display-name> <ejb-name>CreditService</ejb-name>
+     * <home>creditService.ejb.CreditServiceHome</home>
+     * <remote>creditService.ejb.CreditServiceRemote</remote>
+     * <ejb-class>creditService.ejb.CreditServiceBean</ejb-class>
+     * <session-type>Stateless</session-type>
+     * <transaction-type>Container</transaction-type> ... </session> ...
+     * </enterprise-beans>
+     *
      */
 }

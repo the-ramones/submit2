@@ -49,8 +49,12 @@
         <jsp-file>/retry.jsp</jsp-file>
     </servlet>
     <servlet>
-        <servlet-name>JndiServlet</servlet-name>
-        <servlet-class>dao.controller.JndiServlet</servlet-class>
+        <servlet-name>DbcpServlet</servlet-name>
+        <jsp-file>/action/custom-dbcp.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>IndexFlowServlet</servlet-name>
+        <servlet-class>dao.controller.IndexFlowServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SessionConversationServlet</servlet-name>
@@ -59,6 +63,10 @@
     <servlet-mapping>
         <servlet-name>SessionRequestServlet</servlet-name>
         <url-pattern>/session-per-request</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DbcpServlet</servlet-name>
+        <url-pattern>/custom-dbcp</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Company</servlet-name>
@@ -77,8 +85,8 @@
         <url-pattern>/сontroller</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>JndiServlet</servlet-name>
-        <url-pattern>/jndi</url-pattern>
+        <servlet-name>IndexFlowServlet</servlet-name>
+        <url-pattern>/index-flow</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -93,8 +101,19 @@
         <location>/not-found.html</location>
     </error-page>
     <resource-env-ref>
-        <description>Object factory for CompanyController instances</description>
-        <resource-env-ref-name>bean/CompanyControllerFactory</resource-env-ref-name>
-        <resource-env-ref-type>dao.controller.CompanyController</resource-env-ref-type>
+        <description>EJB CompanyEnterpriseBean</description>
+        <resource-env-ref-name>bean/CompanyEnterpriseBeanFactory</resource-env-ref-name>
+        <resource-env-ref-type>dao.controller.CompanyEnterpriseBean</resource-env-ref-type>
     </resource-env-ref>
+    <resource-env-ref>
+        <description>Process sample bean</description>
+        <resource-env-ref-name>bean/ProcessBeanFactory</resource-env-ref-name>
+        <resource-env-ref-type>dao.bean.ProcessBean</resource-env-ref-type>
+    </resource-env-ref>
+    
+    <resource-ref>
+        <res-ref-name>jdbc/lazy-dbcp</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
 </web-app>

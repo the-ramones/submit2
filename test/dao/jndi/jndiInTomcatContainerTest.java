@@ -1,6 +1,6 @@
 package dao.jndi;
 
-import dao.controller.CompanyController;
+import dao.controller.CompanyEnterpriseBean;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -25,7 +25,7 @@ public class jndiInTomcatContainerTest {
     public void startupJndiTest() throws NamingException {
         Context ctx = new InitialContext();
         Context envCtx = (Context) ctx.lookup("java:comp/env");
-        CompanyController bean = (CompanyController) envCtx.lookup("bean/CompanyControllerFactory");
+        CompanyEnterpriseBean bean = (CompanyEnterpriseBean) envCtx.lookup("bean/CompanyEnterpriceBeanFactory");
         
         assertNotNull(bean);
         bean.execute();
