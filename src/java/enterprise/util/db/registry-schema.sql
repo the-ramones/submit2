@@ -27,7 +27,7 @@ CREATE TABLE registers (
     record_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     CONSTRAINT user_id_fk FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE RESTRICT,
     CONSTRAINT op_id_fk FOREIGN KEY (op_id) REFERENCES ops(id) ON UPDATE CASCADE ON DELETE RESTRICT,
-    PRIMARY KEY (id, user_id, op_id)
+    PRIMARY KEY (id) --, user_id, op_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE INDEX users_job_idx ON users (job);

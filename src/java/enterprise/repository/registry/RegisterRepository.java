@@ -2,7 +2,6 @@ package enterprise.repository.registry;
 
 import enterprise.model.registry.Op;
 import enterprise.model.registry.Register;
-import enterprise.model.registry.RegisterId;
 import enterprise.model.registry.User;
 import java.util.Date;
 import java.util.List;
@@ -13,9 +12,9 @@ import java.util.List;
  *
  * @author Paul Kulitski
  */
-public interface RegistryRepository {
+public interface RegisterRepository {
 
-    public Register getRegisterById(RegisterId id);
+    public Register getRegisterById(Long id);
     
     public List<Register> getRegistersByOp(Op op);
     

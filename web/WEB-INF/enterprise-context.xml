@@ -7,27 +7,47 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:jee="http://www.springframework.org/schema/jee"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:cache="http://www.springframework.org/schema/cache"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
-       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+       http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-3.0.xsd">
 
+    <!--<context:component-scan base-package="enterprise.config" />-->
     <context:annotation-config />
-    <context:property-placeholder location="classpath:enterprise.properties"/>
-    
+
     <bean class="enterprise.config.BitronixJtaConfig" />
     <bean class="enterprise.config.EnterpriseConfig" />
+    
+    <context:property-placeholder location="classpath:enterprise.properties"/>
     
     <!-- translate platform-specific exceptions to Spring-inified exception for
     beans with @Repository annotation -->
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
     
-    <!--<context:component-scan base-package="enterprise.config" />-->
     
-    <!--<tx:annotation-driven transaction-manager="txManager" />-->
+    <!--<tx:annotation-driven transaction-manager="jtaTransactionManager"/>-->
     
     <!--<mvc:resources mapping="/resources/**" location="/resources" />-->
 
+    <cache:annotation-driven />
+    
+    <bean id="enterpriseSpringCacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+        <property name="cacheManager" ref="enterpriseCacheManager"/>
+    </bean>
+    
+    <bean id="registrySpringCacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+        <property name="cacheManager" ref="registryCacheManager"/>
+    </bean>
+   
+    <bean id="enterpriseEhcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+        <property name="configLocation" value="classpath:ehcache-enterprise.xml"/>
+    </bean>
+  
+    <bean id="registryEhcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+        <property name="configLocation" value="classpath:ehcache-registry.xml"/>
+    </bean>
 </beans>

@@ -2,12 +2,12 @@ package enterprise.model.registry;
 // Generated Jul 29, 2013 9:22:08 PM by Hibernate Tools 3.2.1.GA
 
 import java.util.Date;
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -29,7 +29,7 @@ import javax.persistence.TemporalType;
 })
 public class Register implements java.io.Serializable {
 
-    private RegisterId id;
+    private Long id;
     private User user;
     private Op op;
     private Date recordTime;
@@ -37,32 +37,35 @@ public class Register implements java.io.Serializable {
     public Register() {
     }
 
-    public Register(RegisterId id, User users, Op ops) {
+    public Register(Long id, User users, Op ops) {
         this.id = id;
         this.user = users;
         this.op = ops;
     }
 
-    public Register(RegisterId id, User users, Op ops, Date recordTime) {
+    public Register(Long id, User users, Op ops, Date recordTime) {
         this.id = id;
         this.user = users;
         this.op = ops;
         this.recordTime = recordTime;
     }
 
-    @EmbeddedId
-    @AttributeOverrides({
-        @AttributeOverride(name = "id", column =
-        @Column(name = "id", nullable = false)),
-        @AttributeOverride(name = "userId", column =
-        @Column(name = "user_id", nullable = false)),
-        @AttributeOverride(name = "opId", column =
-        @Column(name = "op_id", nullable = false))})
-    public RegisterId getId() {
+//    @EmbeddedId
+//    @AttributeOverrides({
+//        @AttributeOverride(name = "id", column =
+//        @Column(name = "id", nullable = false)),
+//        @AttributeOverride(name = "userId", column =
+//        @Column(name = "user_id", nullable = false)),
+//        @AttributeOverride(name = "opId", column =
+//        @Column(name = "op_id", nullable = false))})
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
+    public Long getId() {
         return this.id;
     }
 
-    public void setId(RegisterId id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

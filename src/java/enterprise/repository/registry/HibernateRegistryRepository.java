@@ -2,7 +2,6 @@ package enterprise.repository.registry;
 
 import enterprise.model.registry.Op;
 import enterprise.model.registry.Register;
-import enterprise.model.registry.RegisterId;
 import enterprise.model.registry.User;
 import java.io.Serializable;
 import java.util.Date;
@@ -16,13 +15,13 @@ import org.springframework.stereotype.Repository;
 
 /**
  * {@link org.springframework.stereotype.Repository} class implements
- * {@link enterprise.repository.registry.RegistryRepository} and is backed by
+ * {@link enterprise.repository.registry.RegisterRepository} and is backed by
  * Hibernate library
  *
  * @author Paul Kulitski
  */
 @Repository
-public class HibernateRegistryRepository implements RegistryRepository {
+public class HibernateRegistryRepository implements RegisterRepository {
 
     @Inject
     @Named("registrySessionFactory")
@@ -42,7 +41,7 @@ public class HibernateRegistryRepository implements RegistryRepository {
      * @return
      */
     @Override
-    public Register getRegisterById(RegisterId id) {
+    public Register getRegisterById(Long id) {
         return (Register) currentSession().get(Register.class, id);
     }
 

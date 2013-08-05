@@ -12,6 +12,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 //import org.hibernate.annotations.Cache;
 //import org.hibernate.annotations.CacheConcurrencyStrategy;
 //import javax.persistence.Cacheable;
@@ -21,7 +23,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "reports", catalog = "enterprise")
-// @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+//@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @NamedQueries({
     @NamedQuery(name = "Report.find", 
         query = "select r from Report r where r.startDate = :startDate and r.endDate = :endDate and r.performer = :performer")})
