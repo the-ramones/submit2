@@ -1,0 +1,15 @@
+<form name="report-request">
+    <label>Start date:</label><input type="date" name="start-date">    
+    <label>End date:</label><input type="date" name="end-date">
+    <label>Performer:</label><select name="performer"></select>
+    <label>Time Period:</label>
+        <select name="time-period">
+            <option value="last-qtr">Last Qtr</option>
+            <option value="last-month">Last Month</option>
+            <option value="last-calendar-year">Last Calendar Year</option>
+            <option value="current-year-to-date">Current Year to Date</option>
+            <option value="current-qtr-to-date">Current Qtr to Date</option>
+            <option value="current-month-to-date">Current Month to Date</option>
+        </select>
+    <input type="submit" name="report-submit" value="Submit">
+</form>

@@ -1,7 +1,9 @@
 package enterprise.model.registry;
 // Generated Jul 29, 2013 9:22:08 PM by Hibernate Tools 3.2.1.GA
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +12,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -18,12 +22,15 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "ops", catalog = "registry")
+@NamedQueries({
+    @NamedQuery(name = "Op.findByTitle", query = "select o from Op o where o.title = :title")
+})
 public class Op implements java.io.Serializable {
 
     private Integer id;
     private String title;
     private String description;
-    private Set<Register> registers = new HashSet<Register>(0);
+    private List<Register> registers = new ArrayList<Register>(0);
 
     public Op() {
     }
@@ -32,7 +39,7 @@ public class Op implements java.io.Serializable {
         this.title = title;
     }
 
-    public Op(String title, String description, Set<Register> registers) {
+    public Op(String title, String description, List<Register> registers) {
         this.title = title;
         this.description = description;
         this.registers = registers;
@@ -68,11 +75,11 @@ public class Op implements java.io.Serializable {
     }
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "op")
-    public Set<Register> getRegisters() {
+    public List<Register> getRegisters() {
         return this.registers;
     }
 
-    public void setRegisters(Set<Register> registerses) {
+    public void setRegisters(List<Register> registerses) {
         this.registers = registerses;
     }
 

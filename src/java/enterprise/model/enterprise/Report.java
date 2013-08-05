@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,6 +22,9 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "reports", catalog = "enterprise")
 // @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@NamedQueries({
+    @NamedQuery(name = "Report.find", 
+        query = "select r from Report r where r.startDate = :startDate and r.endDate = :endDate and r.performer = :performer")})
 public class Report implements java.io.Serializable {
 
     private Long id;
@@ -27,7 +32,7 @@ public class Report implements java.io.Serializable {
     private Date endDate;
     private String performer;
     private String activity;
-    
+
     public Report() {
     }
 
@@ -130,5 +135,4 @@ public class Report implements java.io.Serializable {
         }
         return true;
     }
-    
 }

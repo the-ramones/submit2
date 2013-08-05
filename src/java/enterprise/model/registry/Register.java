@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,6 +21,12 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "registers", catalog = "registry")
+@NamedQueries({
+    @NamedQuery(name = "Register.findByPeriod",
+        query = "select r from Register r where r.recordTime between :startDate and :endDate"),
+    @NamedQuery(name = "Register.find",
+        query = "select r from Register r where r.op = :op and r.user = :user and (r.recordTime between :startDate and :endDate)")
+})
 public class Register implements java.io.Serializable {
 
     private RegisterId id;

@@ -20,6 +20,10 @@
     <bean class="enterprise.config.BitronixJtaConfig" />
     <bean class="enterprise.config.EnterpriseConfig" />
     
+    <!-- translate platform-specific exceptions to Spring-inified exception for
+    beans with @Repository annotation -->
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+    
     <!--<context:component-scan base-package="enterprise.config" />-->
     
     <!--<tx:annotation-driven transaction-manager="txManager" />-->
