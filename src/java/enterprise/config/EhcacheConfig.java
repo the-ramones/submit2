@@ -1,25 +1,29 @@
 package enterprise.config;
 
+import net.sf.ehcache.transaction.manager.DefaultTransactionManagerLookup;
 import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 
 /**
+ * Caching configuration
  *
- * @author paul
+ * @author Paul Kulitski
  */
-@Configuration
-@EnableCaching
+//@Configuration
+//@EnableCaching
 public class EhcacheConfig {
 
     public static final String EHCACHE_ENTERPRISE_CONFIG_XML = "/ehcache-enterprise.xml";
     public static final String EHCACHE_REGISTRY_CONFIG_XML = "/ehcache-registry.xml";
 
-    @Bean
+    /**
+     * Native Ehcache manager bean configuration for 'enterprise' db
+     *
+     * @return native EHcache manager
+     */
+    @Bean(destroyMethod = "shtdown")
     public net.sf.ehcache.CacheManager enterpriseEhCacheManager() {
         net.sf.ehcache.CacheManager ecm = net.sf.ehcache.CacheManager.newInstance(
                 Thread.currentThread().getContextClassLoader()
@@ -27,7 +31,12 @@ public class EhcacheConfig {
         return ecm;
     }
 
-    @Bean
+    /**
+     * Native Ehcache manager bean configuration for 'registry' db
+     *
+     * @return native EHcache manager
+     */
+    @Bean(destroyMethod = "shutdown")
     public net.sf.ehcache.CacheManager registryEhCacheManager() {
         net.sf.ehcache.CacheManager rcm = net.sf.ehcache.CacheManager.newInstance(
                 Thread.currentThread().getContextClassLoader()
@@ -35,7 +44,12 @@ public class EhcacheConfig {
         return rcm;
     }
 
-    @Bean
+    /**
+     * Spring-based EhCache manager
+     *
+     * @return Spring-based EhCache manager
+     */
+    @Bean(destroyMethod = "destroy")
     public CacheManager enterprisecacheManager() {
         EhCacheManagerFactoryBean efb = new EhCacheManagerFactoryBean();
         efb.setConfigLocation(new ClassPathResource(
@@ -44,6 +58,11 @@ public class EhcacheConfig {
         return (CacheManager) efb.getObject();
     }
 
+    /**
+     * Spring-based EhCache manager
+     *
+     * @return Spring-based EhCache manager
+     */
     @Bean(destroyMethod = "destroy")
     public CacheManager registryCacheManager() {
         EhCacheManagerFactoryBean efb = new EhCacheManagerFactoryBean();

@@ -3,7 +3,7 @@ package enterprise.config;
 /**
  * Spring Java configuration of Bitronix transaction manager
  *
- * @author the-ramones
+ * @author Paul Kulitski
  */
 import bitronix.tm.BitronixTransactionManager;
 import bitronix.tm.TransactionManagerServices;
@@ -20,24 +20,7 @@ import javax.transaction.TransactionManager;
 import javax.transaction.UserTransaction;
 import java.util.Properties;
 import java.io.IOException;
-import java.io.Serializable;
-import java.sql.Connection;
-import java.util.Map;
-import java.util.Set;
 import javax.inject.Inject;
-import javax.naming.NamingException;
-import javax.naming.Reference;
-import org.hibernate.Cache;
-import org.hibernate.HibernateException;
-import org.hibernate.Interceptor;
-import org.hibernate.SessionFactory;
-import org.hibernate.StatelessSession;
-import org.hibernate.TypeHelper;
-import org.hibernate.classic.Session;
-import org.hibernate.engine.FilterDefinition;
-import org.hibernate.metadata.ClassMetadata;
-import org.hibernate.metadata.CollectionMetadata;
-import org.hibernate.stat.Statistics;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -154,12 +137,6 @@ public class BitronixJtaConfig {
         return tm;
     }
 
-//    @Bean 
-//    public int f() {
-//        net.sf.ehcache.transaction.manager.TransactionManagerLookup t;
-//        net.sf.ehcache.transaction.manager.DefaultTransactionManagerLookup t2;
-//        return 1;
-//    }
     @Bean
     @DependsOn("enterpriseDataSource")
     public AnnotationSessionFactoryBean enterpriseSessionFactory() {
