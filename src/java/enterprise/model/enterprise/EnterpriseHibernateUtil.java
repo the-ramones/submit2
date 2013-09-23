@@ -17,7 +17,6 @@ public class EnterpriseHibernateUtil {
 
     static {
         try {
-
             sessionFactory = new AnnotationConfiguration().configure(HIBERNATE_CONFIGURATION_PATH).buildSessionFactory();
         } catch (Throwable ex) {
             // Log the exception. 

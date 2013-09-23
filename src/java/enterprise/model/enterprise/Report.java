@@ -29,7 +29,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
         query = "select r from Report r where r.startDate = :startDate and r.endDate = :endDate and r.performer = :performer")})
 public class Report implements java.io.Serializable {
 
-    private Long id;
+    private Long id; 
     private Date startDate;
     private Date endDate;
     private String performer;
