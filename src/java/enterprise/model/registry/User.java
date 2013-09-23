@@ -29,6 +29,7 @@ import javax.persistence.Table;
 public class User implements java.io.Serializable {
 
     private Integer id;
+    
     private String fullname;
     private String job;
     private List<Register> registers = new ArrayList<Register>(0);
