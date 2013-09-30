@@ -3,7 +3,6 @@ package enterprise.model.registry;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,6 +31,7 @@ public class User implements java.io.Serializable {
     
     private String fullname;
     private String job;
+    private String email;
     private List<Register> registers = new ArrayList<Register>(0);
 
     public User() {
@@ -76,6 +76,15 @@ public class User implements java.io.Serializable {
         this.job = job;
     }
 
+    @Column(name = "email")
+    public String getEmail() {
+        return this.email;
+    }
+    
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     public List<Register> getRegisters() {
         return this.registers;

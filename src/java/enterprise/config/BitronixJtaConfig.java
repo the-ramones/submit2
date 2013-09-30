@@ -154,12 +154,6 @@ public class BitronixJtaConfig {
         return tm;
     }
 
-//    @Bean 
-//    public int f() {
-//        net.sf.ehcache.transaction.manager.TransactionManagerLookup t;
-//        net.sf.ehcache.transaction.manager.DefaultTransactionManagerLookup t2;
-//        return 1;
-//    }
     @Bean
     @DependsOn("enterpriseDataSource")
     public AnnotationSessionFactoryBean enterpriseSessionFactory() {

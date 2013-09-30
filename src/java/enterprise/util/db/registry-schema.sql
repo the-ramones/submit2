@@ -16,6 +16,7 @@ CREATE TABLE users(
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     fullname VARCHAR(255) NOT NULL,
     job VARCHAR(255),
+    email VARCHAR(255),
     UNIQUE KEY (fullname),
     PRIMARY KEY(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;

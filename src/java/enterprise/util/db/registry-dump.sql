@@ -3,9 +3,9 @@
 use registry;
 
 DELETE FROM users;
-INSERT INTO users VALUES (1, 'Dan Sammerson', 'manager'),
-        (2, 'Kathy LaFael', 'secretary'),
-        (3, 'Peter Norton', 'director');
+INSERT INTO users VALUES (1, 'Dan Sammerson', 'manager', 'aareports@mail.ru'),
+        (2, 'Kathy LaFael', 'secretary', 'sareports@mail.ru'),
+        (3, 'Peter Norton', 'director', 'dareports@mail.ru');
 
 DELETE FROM ops;
 INSERT INTO ops VALUES (1, 'INSERT', 'data insertion into enterprise db'),
